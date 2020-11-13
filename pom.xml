@@ -12,7 +12,7 @@
     <artifactId>sportnutrition</artifactId>
     <version>2.3.4</version>
     <packaging>war</packaging>
-    <name>sportnutrition</name>
+    <name>sportNutrition</name>
     <description>sports nutrition web shop</description>
 
     <properties>
@@ -34,6 +34,19 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-jsp</artifactId>
+            <version>3.0.8</version>
         </dependency>
     </dependencies>
 

@@ -1,12 +1,24 @@
 
-header{
-    background-color: brown;
+.navBarTitle{
+    font-size : 20px;
+}
+.navBarElementStyle{
+    font-size : 20px;
+    margin: 15px;
 }
 
-main{
-    background-color: beige;
+.footer a{
+    margin : 5px;
+
 }
 
-footer{
-    background-color: brown;
+.footer p {
+    margin-top: 10px;;
+    margin-bottom: 0px;
+    padding-bottom: 10px;;
+}
+.footer{
+    text-align: center;
+    background-color: darkgrey;
+
 }

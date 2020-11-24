@@ -16,6 +16,7 @@
 
         <!--OUR CSS -->
         <link type="text/css" href= "<spring:url value='/css/template.css'/>" rel="Stylesheet" />
+        <link type="text/css" href= "<spring:url value='/css/welcome.css'/>" rel="Stylesheet" />
 
         <title>${title}</title>
     </head>
@@ -30,12 +31,12 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link navBarElementStyle" href="#">Home <span class="sr-only">(current)</span></a>
-                        </li>
+                        <!--<li class="nav-item active">
+                            <a class="nav-link navBarElementStyle" href="#">Accueil <span class="sr-only">(current)</span></a>
+                        </li>-->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle navBarElementStyle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dropdown
+                                Catalogue
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#">Action</a>
@@ -51,16 +52,16 @@
                     <!-- RIGHT ELEMENTS -->
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link navBarElementStyle" href="#">Test</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link navBarElementStyle" href="#">Test</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link navBarElementStyle" href="#">Panier</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link navBarElementStyle" href="#">Mon compte</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link navBarElementStyle" href="#">Langue</a>
+                        </li>
                         <li>
-                            <a class="nav-link navBarElementStyle" href="#">A propos</a>
+                            <a class="nav-link navBarElementStyle" href="#">Test</a>
                         </li>
                     </ul>
                 </div>
@@ -72,13 +73,13 @@
         <footer class="footer">
             <div>
                 <p>Suivez nous !</p>
-                <a class="btn btn-social-icon btn-twitter" href="https://twitter.com/AtomicBearShop">
+                <a class="btn btn-social-icon btn-twitter" href="https://twitter.com/AtomicBearShop" target="_blank">
                     <span class="fab fa-twitter"></span>
                 </a>
-                <a class="btn btn-social-icon btn-github" href = "https://github.com/emmavdc/webshop-sportnutrition">
+                <a class="btn btn-social-icon btn-github" href = "https://github.com/emmavdc/webshop-sportnutrition" target="_blank">
                     <span class="fab fa-github"></span>
                 </a>
-                <a class="btn btn-social-icon btn-facebook" href="https://www.facebook.com/Atomic-Bear-179050482751059/?modal=admin_todo_tour">
+                <a class="btn btn-social-icon btn-facebook" href="https://www.facebook.com/Atomic-Bear-179050482751059/?modal=admin_todo_tour" target="_blank">
                     <span class="fab fa-facebook"></span>
                 </a>
                 <p> Copyright &copy; Sohet Dylan & Vandecasteele Emma - 2020 - All right Reserved</p>

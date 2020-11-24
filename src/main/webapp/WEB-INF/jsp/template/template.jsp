@@ -19,6 +19,7 @@
         <link type="text/css" href= "<spring:url value='/css/welcome.css'/>" rel="Stylesheet" />
 
         <title>${title}</title>
+        <link rel="icon" href='<spring:url value = "/images/logo_icon.ico"/>' />
     </head>
     <body>
         <header class = "headerStyle">

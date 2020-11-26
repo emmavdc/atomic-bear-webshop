@@ -1,12 +1,9 @@
 package com.webshop.sportnutrition.model;
 
-import javax.persistence.*;
+import com.sun.istack.NotNull;
 
-@Entity
-@Table(name="Language")
 public class Language {
 
-    @Id
-    @Column(name="languageID")
+    @NotNull
     private Integer languageID;
 }

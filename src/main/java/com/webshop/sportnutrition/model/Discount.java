@@ -1,18 +1,15 @@
 package com.webshop.sportnutrition.model;
 
-import javax.persistence.*;
+import com.sun.istack.NotNull;
 
-@Entity
-@Table(name="Discount")
 public class Discount {
 
-    @Id
-    @Column(name="discountID")
+    @NotNull
     private Integer discountID;
 
-    @Column(name="discount")
+    @NotNull
     private Integer discount;
 
-    @Column(name="label")
+    @NotNull
     private String label;
 }

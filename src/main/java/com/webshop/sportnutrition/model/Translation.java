@@ -1,21 +1,18 @@
 package com.webshop.sportnutrition.model;
 
-import javax.persistence.*;
+import com.sun.istack.NotNull;
 
-@Entity
-@Table(name="Translation")
 public class Translation {
 
-    @Id
-    @Column(name="translationID")
+    @NotNull
     private Integer translationID;
 
-    @Column(name="label")
+    @NotNull
     private String label;
 
-    @Column(name="categoryFK")
+    @NotNull
     private Integer categoryFK;
 
-    @Column(name="languageFK")
+    @NotNull
     private Integer languageFK;
 }

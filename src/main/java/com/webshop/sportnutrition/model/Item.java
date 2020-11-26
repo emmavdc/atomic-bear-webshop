@@ -1,27 +1,24 @@
 package com.webshop.sportnutrition.model;
 
-import javax.persistence.*;
+import com.sun.istack.NotNull;
 
-@Entity
-@Table(name="Item")
 public class Item {
 
-    @Id
-    @Column(name="itemID")
+    @NotNull
     private Integer itemID;
 
-    @Column(name="label")
+    @NotNull
     private String label;
 
-    @Column(name="description")
+    @NotNull
     private String description;
 
-    @Column(name="price")
+    @NotNull
     private Double price;
 
-    @Column(name="brand")
+    @NotNull
     private String brand;
 
-    @Column(name="currentInventory")
+    @NotNull
     private Integer currentInventory;
 }

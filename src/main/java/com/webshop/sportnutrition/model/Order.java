@@ -1,25 +1,23 @@
 package com.webshop.sportnutrition.model;
 
-import javax.persistence.*;
+import com.sun.istack.NotNull;
+
 import java.util.Date;
 
-@Entity
-@Table(name="Order")
 public class Order {
 
-    @Id
-    @Column(name="orderID")
+    @NotNull
     private Integer orderID;
 
-    @Column(name="date")
+    @NotNull
     private Date date;
 
-    @Column(name="isPaid")
+    @NotNull
     private Boolean isPaid;
 
-    @Column(name="reduction")
+    @NotNull
     private Integer reduction;
 
-    @Column(name="customerFK")
+    @NotNull
     private String customerFK;
 }

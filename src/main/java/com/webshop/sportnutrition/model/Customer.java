@@ -1,49 +1,46 @@
 package com.webshop.sportnutrition.model;
 
-import javax.persistence.*;
+import com.sun.istack.NotNull;
+
 import java.util.Date;
 
-@Entity
-@Table(name="Customer")
 public class Customer {
 
-    @Id
-    @Column(name="customerID")
+    @NotNull
     private Integer customerID;
 
-    @Column(name="email")
+    @NotNull
     private String email;
 
-    @Column(name="password")
+    @NotNull
     private String password;
 
-    @Column(name="firstName")
+    @NotNull
     private String firstName;
 
-    @Column(name="lastName")
+    @NotNull
     private String lastName;
 
-    @Column(name="phoneNumber")
     private String phoneNumber;
 
-    @Column(name="birthDate")
+    @NotNull
     private Date birthDate;
 
-    @Column(name="nbFidelityPoints")
+    @NotNull
     private Integer nbFidelityPoints;
 
-    @Column(name="streetName")
+    @NotNull
     private String streetName;
 
-    @Column(name="streetNumber")
+    @NotNull
     private String streetNumber;
 
-    @Column(name="locality")
+    @NotNull
     private String locality;
 
-    @Column(name="zipCode")
+    @NotNull
     private Integer zipCode;
 
-    @Column(name="country")
+    @NotNull
     private String country;
 }

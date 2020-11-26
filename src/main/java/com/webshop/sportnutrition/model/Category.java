@@ -1,12 +1,9 @@
 package com.webshop.sportnutrition.model;
 
-import javax.persistence.*;
+import com.sun.istack.NotNull;
 
-@Entity
-@Table(name="Category")
 public class Category {
 
-    @Id
-    @Column(name="categoryID")
+    @NotNull
     private Integer categoryID;
 }

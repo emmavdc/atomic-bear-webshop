@@ -6,3 +6,23 @@
 .welcome h1{
     text-align: center;
 }
+
+.next{
+    position: relative;
+}
+
+.next-product, .next-background{
+    position: absolute;
+}
+
+.next-product{
+    width: 500px;
+    height: 270px;
+    margin-top: 15%;
+    margin-left: 5%;
+}
+
+.next-product:hover{
+    width: 525px;
+    height: 295px;
+}

@@ -1,15 +1,12 @@
 package com.webshop.sportnutrition.dataAccess.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name="Category")
+@Table(name="category")
 public class CategoryEntity {
 
     @Id
-    @Column(name="categoryID")
+    @Column(name="category_id")
     private Integer categoryID;
 }

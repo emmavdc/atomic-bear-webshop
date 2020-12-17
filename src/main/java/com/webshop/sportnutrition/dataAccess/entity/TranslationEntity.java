@@ -1,24 +1,23 @@
 package com.webshop.sportnutrition.dataAccess.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name="Translation")
+@Table(name="translation")
 public class TranslationEntity {
 
     @Id
-    @Column(name="translationID")
+    @Column(name="translation_id")
     private Integer translationID;
 
     @Column(name="label")
     private String label;
 
-    @Column(name="categoryFK")
-    private Integer categoryFK;
+    @JoinColumn(name="category_fk", referencedColumnName = "category_id")
+    @ManyToOne
+    private CategoryEntity category;
 
-    @Column(name="languageFK")
-    private Integer languageFK;
+    @JoinColumn(name="language_fk", referencedColumnName = "language_id")
+    @ManyToOne
+    private LanguageEntity language;
 }

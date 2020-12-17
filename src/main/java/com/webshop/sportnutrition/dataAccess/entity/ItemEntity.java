@@ -1,16 +1,13 @@
 package com.webshop.sportnutrition.dataAccess.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name="Item")
+@Table(name="item")
 public class ItemEntity {
 
     @Id
-    @Column(name="itemID")
+    @Column(name="item_id")
     private Integer itemID;
 
     @Column(name="label")
@@ -25,6 +22,6 @@ public class ItemEntity {
     @Column(name="brand")
     private String brand;
 
-    @Column(name="currentInventory")
+    @Column(name="current_inventory")
     private Integer currentInventory;
 }

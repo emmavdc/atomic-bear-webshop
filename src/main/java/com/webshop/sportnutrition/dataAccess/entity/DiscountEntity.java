@@ -1,16 +1,13 @@
 package com.webshop.sportnutrition.dataAccess.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name="Discount")
+@Table(name="discount")
 public class DiscountEntity {
 
     @Id
-    @Column(name="discountID")
+    @Column(name="discount_id")
     private Integer discountID;
 
     @Column(name="discount")

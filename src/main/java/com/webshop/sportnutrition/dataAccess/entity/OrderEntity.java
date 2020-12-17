@@ -1,28 +1,26 @@
 package com.webshop.sportnutrition.dataAccess.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="Order")
+@Table(name="order")
 public class OrderEntity {
 
     @Id
-    @Column(name="orderID")
+    @Column(name="order_id")
     private Integer orderID;
 
     @Column(name="date")
     private Date date;
 
-    @Column(name="isPaid")
+    @Column(name="is_paid")
     private Boolean isPaid;
 
     @Column(name="reduction")
     private Integer reduction;
 
-    @Column(name="customerFK")
-    private String customerFK;
+    @JoinColumn(name="customer_fk", referencedColumnName = "customer_id")
+    @ManyToOne
+    private CustomerEntity customer;
 }

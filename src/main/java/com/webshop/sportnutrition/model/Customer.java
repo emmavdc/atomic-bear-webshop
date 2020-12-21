@@ -1,24 +1,24 @@
 package com.webshop.sportnutrition.model;
 
 import com.sun.istack.NotNull;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.*;
 
 import static org.springframework.util.StringUtils.isEmpty;
 
 public class Customer implements UserDetails {
 
-    @NotNull
-    @Min(value = 1)
+    //@Min(value = 1)
     private Integer customerID;
 
     /*@NotNull
@@ -26,13 +26,17 @@ public class Customer implements UserDetails {
 
     @NotNull
     @Size(min = 5, max = 45)
+    @Pattern(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
     private String username;
 
     @NotNull
-    @Size(min = 8, max = 60)
+    @Size(min = 8, max = 45)
     private String password;
 
     @NotNull
+    @Size(min = 8, max = 45)
+    private String confirmPassword;
+
     private String authorities;
 
     @NotNull
@@ -46,11 +50,15 @@ public class Customer implements UserDetails {
     @Size(min = 10, max = 10)
     private String phoneNumber;
 
-    @NotNull
-    private Date birthDate;
+    //@NotNull
+    //@Pattern(regexp = "dd/MM/yyyy")
+    //@DateTimeFormat(pattern = "dd-MM-yyyy")
+    private LocalDate birthDate;
 
     @NotNull
-    @Min(value = 0)
+    private String strBirthDate;
+
+    //@Min(value = 0)
     private Integer nbFidelityPoints;
 
     @NotNull
@@ -84,15 +92,17 @@ public class Customer implements UserDetails {
 
     /* ------ CONSTRUCT ------ */
 
-    public Customer(Integer customerID, String username, String password, String authorities, String firstName, String lastName, String phoneNumber, Date birthDate, Integer nbFidelityPoints, String streetName, String streetNumber, String locality, Integer zipCode, String country, Boolean accountNonExpired, Boolean accountNonLocked, Boolean credentialsNonExpired, Boolean enabled) {
+    public Customer(Integer customerID, String username, String password, String confirmPassword, String authorities, String firstName, String lastName, String phoneNumber, LocalDate birthDate, String strBirthDate, Integer nbFidelityPoints, String streetName, String streetNumber, String locality, Integer zipCode, String country, Boolean accountNonExpired, Boolean accountNonLocked, Boolean credentialsNonExpired, Boolean enabled) {
         this.customerID = customerID;
         this.username = username;
         this.password = password;
+        this.confirmPassword = confirmPassword;
         this.authorities = authorities;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.birthDate = birthDate;
+        this.strBirthDate = strBirthDate;
         this.nbFidelityPoints = nbFidelityPoints;
         this.streetName = streetName;
         this.streetNumber = streetNumber;
@@ -165,6 +175,10 @@ public class Customer implements UserDetails {
         return password;
     }
 
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -177,8 +191,12 @@ public class Customer implements UserDetails {
         return phoneNumber;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
+    }
+
+    public String getStrBirthDate() {
+        return strBirthDate;
     }
 
     public Integer getNbFidelityPoints() {
@@ -223,6 +241,10 @@ public class Customer implements UserDetails {
         this.password = password;
     }
 
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
     public void setAuthorities(String authorities) {
         this.authorities = authorities;
     }
@@ -239,8 +261,12 @@ public class Customer implements UserDetails {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public void setStrBirthDate(String strBirthDate) {
+        this.strBirthDate = strBirthDate;
     }
 
     public void setNbFidelityPoints(Integer nbFidelityPoints) {

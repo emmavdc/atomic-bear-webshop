@@ -3,23 +3,28 @@ package com.webshop.sportnutrition.dataAccess.entity;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Table(name="customer")
 public class CustomerEntity {
 
     @Id
+    @GeneratedValue
     @Column(name="customer_id")
     private Integer customerID;
 
     /*@Column(name="email")
     private String email;*/
+
     @Column(name="username")
     private String username;
 
     @Column(name="password")
     private String password;
+
+    @Transient
+    private String confirmPassword;
 
     @Column(name="authorities")
     private String authorities;
@@ -35,6 +40,9 @@ public class CustomerEntity {
 
     @Column(name="birth_date")
     private Date birthDate;
+
+    @Transient
+    private String strBirthDate;
 
     @Column(name="nb_fidelity_points")
     private Integer nbFidelityPoints;
@@ -84,6 +92,10 @@ public class CustomerEntity {
         return password;
     }
 
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
     public String getAuthorities() {
         return authorities;
     }
@@ -102,6 +114,10 @@ public class CustomerEntity {
 
     public Date getBirthDate() {
         return birthDate;
+    }
+
+    public String getStrBirthDate() {
+        return strBirthDate;
     }
 
     public Integer getNbFidelityPoints() {
@@ -162,6 +178,10 @@ public class CustomerEntity {
         this.password = password;
     }
 
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
     public void setAuthorities(String authorities) {
         this.authorities = authorities;
     }
@@ -180,6 +200,10 @@ public class CustomerEntity {
 
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public void setStrBirthDate(String strBirthDate) {
+        this.strBirthDate = strBirthDate;
     }
 
     public void setNbFidelityPoints(Integer nbFidelityPoints) {

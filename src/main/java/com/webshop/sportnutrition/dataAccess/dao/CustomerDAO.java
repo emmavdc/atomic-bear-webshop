@@ -29,6 +29,9 @@ public class CustomerDAO implements CustomerDataAccess {
 
     @Override
     public Customer findByUsername(String username) {
-        return providerConverter.customerEntityToCustomerModel(customerRepository.findByUsername(username));
+        CustomerEntity customerEntity = customerRepository.findByUsername(username);
+        if (customerEntity == null)
+            return null;
+        return providerConverter.customerEntityToCustomerModel(customerEntity);
     }
 }

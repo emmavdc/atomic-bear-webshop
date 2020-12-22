@@ -15,6 +15,7 @@
             <form:errors path="username" class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"/>
         </div> --%>
         <form:errors path="username" class="regErrors"/>
+        <span class="regErrors"><spring:message code="${usernameAlreadyExist}"/></span>
     </div>
 
     <div class="form-group row">
@@ -57,15 +58,14 @@
         <form:errors path="phoneNumber" class="regErrors"/>
     </div>
 
-    <div class="form-group row">
+    <%-- <div class="form-group row">
         <form:label path="strBirthDate" class="col-sm-4 col-form-label"><spring:message code="birthDate"/> (<spring:message code="datePattern"/>)</form:label>
         <div class="col-sm-8">
-            <%-- <fmt:formatDate value="${yourObject.date}" var="dateString" pattern="dd/MM/yyyy" /> --%>
             <form:input path="strBirthDate" type="date" value="1800-01-01" class="form-control"></form:input>
-        </div>
+        </div> --%>
         <%-- <form:errors path="birthDate" class="regErrors"/> --%>
-        <span class="regErrors"><spring:message code="${birthDateError}"/></span>
-    </div>
+        <%-- <span class="regErrors"><spring:message code="${birthDateError}"/></span>
+    </div> --%>
 
     <div class="form-group row">
         <form:label path="streetName" class="col-sm-4 col-form-label"><spring:message code="streetName"/></form:label>

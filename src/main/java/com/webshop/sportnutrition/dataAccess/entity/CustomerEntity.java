@@ -2,6 +2,7 @@ package com.webshop.sportnutrition.dataAccess.entity;
 
 import com.sun.istack.NotNull;
 
+//import org.hibernate.id.enhanced.TableGenerator;
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -10,8 +11,9 @@ import java.sql.Date;
 public class CustomerEntity {
 
     @Id
-    @GeneratedValue
-    @Column(name="customer_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name="customer_id", unique=true, nullable = false)
     private Integer customerID;
 
     /*@Column(name="email")
@@ -38,11 +40,11 @@ public class CustomerEntity {
     @Column(name="phone_number")
     private String phoneNumber;
 
-    @Column(name="birth_date")
+    /*@Column(name="birth_date")
     private Date birthDate;
 
     @Transient
-    private String strBirthDate;
+    private String strBirthDate;*/
 
     @Column(name="nb_fidelity_points")
     private Integer nbFidelityPoints;
@@ -112,13 +114,13 @@ public class CustomerEntity {
         return phoneNumber;
     }
 
-    public Date getBirthDate() {
+    /*public Date getBirthDate() {
         return birthDate;
     }
 
     public String getStrBirthDate() {
         return strBirthDate;
-    }
+    }*/
 
     public Integer getNbFidelityPoints() {
         return nbFidelityPoints;
@@ -198,13 +200,13 @@ public class CustomerEntity {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setBirthDate(Date birthDate) {
+    /*public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 
     public void setStrBirthDate(String strBirthDate) {
         this.strBirthDate = strBirthDate;
-    }
+    }*/
 
     public void setNbFidelityPoints(Integer nbFidelityPoints) {
         this.nbFidelityPoints = nbFidelityPoints;

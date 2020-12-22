@@ -31,7 +31,7 @@ CREATE TABLE `online_nutrition_store`.`customer` (
   `first_name` varchar(45) NOT NULL,
   `last_name` varchar(45) NOT NULL,
   `phone_number` varchar(45) DEFAULT NULL,
-  `birth_date` date NOT NULL,
+  /*`birth_date` date NOT NULL,*/
   `nb_fidelity_points` int DEFAULT 0,
   `street_name` varchar(45) NOT NULL,
   `street_number` varchar(45) NOT NULL,
@@ -87,6 +87,11 @@ CREATE TABLE `online_nutrition_store`.`order_line` (
   PRIMARY KEY (`order_line_id`),
   FOREIGN KEY (`item_fk`) REFERENCES `item` (`item_id`) ON DELETE SET NULL,
   FOREIGN KEY (`order_fk`) REFERENCES `order` (`order_id`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `online_nutrition_store`.`hibernate_sequence` (
+  `sequence_name` varchar(255) NOT NULL,
+	`next_val` INTEGER NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP trigger IF EXISTS online_nutrition_store.decrease_stock;

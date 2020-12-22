@@ -60,14 +60,14 @@ public class UserInscriptionController {
         //System.out.println("Date str : " + customer.getStrBirthDate());
         //System.out.println("Date :" + customer.getBirthDate());
 
-        if (customer.getStrBirthDate() != null) {
+        //if (customer.getStrBirthDate() != null) {
 
-            /* ------ Convert date from input field to date format ------ */
+            // ------ Convert date from input field to date format ------
             //customer.setBirthDate(new SimpleDateFormat("yyyy-MM-dd").parse(customer.getStrBirthDate()));
 
-            /* ------ Convert date from input field to LocalDate format ------ */
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); //d/MM/yyyy
-            customer.setBirthDate(LocalDate.parse(customer.getStrBirthDate(), formatter));
+            // ------ Convert date from input field to LocalDate format ------
+            /*DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); //d/MM/yyyy
+            customer.setBirthDate(LocalDate.parse(customer.getStrBirthDate(), formatter));*/
 
             //System.out.println("Date str : " + customer.getStrBirthDate() + " --- Date convert : " + customer.getBirthDate() + " --- Y : " + customer.getBirthDate().getYear());
             /*LocalDate ld = LocalDate.parse("2019-02-14");
@@ -78,31 +78,50 @@ public class UserInscriptionController {
             LocalDate dateTime = LocalDate.parse(customer.getStrBirthDate(), formatter);
             System.out.println("Date convert :" + dateTime);*/
 
-            /* ------ Test if date is older than current date ------ */
+            // ------ Test if date is older than current date ------
             //Date currentDate = new Date();
-            LocalDate currentDate = LocalDate.now();
+            /*LocalDate currentDate = LocalDate.now();
             Boolean beforeCurrentDate = customer.getBirthDate().isBefore(currentDate); //customer.getBirthDate().compareTo(currentDate) > 0;
             Boolean ageIsValid = (currentDate.getYear() - customer.getBirthDate().getYear()) > 150;
-            if (beforeCurrentDate && ageIsValid) {
+            if (beforeCurrentDate && ageIsValid) {*/
             /*ObjectError error = new ObjectError("BirtDateError", "Birth date must be older than current date");
             errors.addError(error);*/
-                model.addAttribute("birthDateError", "birthDateError");
+                /*model.addAttribute("birthDateError", "birthDateError");
             }
-        }
+        }*/
         /*else
             model.addAttribute("birthDateError", "birthDateEmpty");*/
 
         //System.out.println("Date :" + customer.getBirthDate() + " ----- Str date : " + customer.getStrBirthDate());
 
-        if (!errors.hasErrors() && !model.containsAttribute("pwdDontMatch") && !model.containsAttribute("birthDateError")) {
+        Customer customerBD = customerDAO.findByUsername(customer.getUsername());
+        if(customerBD != null)
+            model.addAttribute("usernameAlreadyExist", "usernameAlreadyExist");
+        System.out.println("Customer = " + customerBD + " --- Customer exist : " + (customerBD != null));
 
+        if (!errors.hasErrors() && !model.containsAttribute("pwdDontMatch") && !model.containsAttribute("usernameAlreadyExist")/* && !model.containsAttribute("birthDateError")*/) {
+
+            //Remplissage ici car les valeurs de UserDetails ne se mappent pas correctement
+            // Et les valeurs par défaut de la BD ne s'appliquent pas
             customer.setAccountNonExpired(true);
             customer.setAccountNonLocked(true);
             customer.setCredentialsNonExpired(true);
             customer.setEnabled(true);
+            customer.setAuthorities("ROLE_USER");
+            customer.setNbFidelityPoints(0);
 
             customerDAO.save(customer);
-            return "redirect:/myAccount";
+            model.addAttribute("log", customer.getUsername());
+            model.addAttribute("pwd", customer.getPassword());
+            //return "redirect:/myAccount";
+            //return "redirect:/login";
+            //return "redirect:/goToLogin";
+            return "redirect:/home";
+
+            //Renvoi une erreur (mettre le user en session ?)
+            /*model.addAttribute("title", "Login");
+            model.addAttribute("user", new Customer());
+            return "integrated:login";*/
         }
 
 

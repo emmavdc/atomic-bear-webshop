@@ -30,12 +30,20 @@ public class ProviderConverter {
         CryptPassword cryptPassword = new CryptPassword();
         customerEntity.setPassword(cryptPassword.crypt(customer.getPassword()));
         //customerEntity.setBirthDate(new Date(customer.getBirthDate().getTime()));
-        customerEntity.setBirthDate(Date.valueOf(customer.getBirthDate()));
+        //customerEntity.setBirthDate(Date.valueOf(customer.getBirthDate()));
         //customerEntity.setAuthorities(customer.getAuthorities());
         /*customerEntity.setAccountNonExpired(customer.isAccountNonExpired());
         customerEntity.setAccountNonLocked(customer.isAccountNonLocked());
         customerEntity.setCredentialsNonExpired(customer.isCredentialsNonExpired());
         customerEntity.setEnabled(customer.isEnabled());*/
+
+        //Remplissage ici car les valeurs par défaut de la BD ne s'appliquent pas
+        /*customerEntity.setAccountNonExpired(true);
+        customerEntity.setAccountNonLocked(true);
+        customerEntity.setCredentialsNonExpired(true);
+        customerEntity.setEnabled(true);
+        customerEntity.setAuthorities("ROLE_USER");
+        customerEntity.setNbFidelityPoints(0);*/
         return customerEntity;
     }
 

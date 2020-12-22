@@ -53,10 +53,10 @@ public class Customer implements UserDetails {
     //@NotNull
     //@Pattern(regexp = "dd/MM/yyyy")
     //@DateTimeFormat(pattern = "dd-MM-yyyy")
-    private LocalDate birthDate;
+    /*private LocalDate birthDate;
 
     @NotNull
-    private String strBirthDate;
+    private String strBirthDate;*/
 
     //@Min(value = 0)
     private Integer nbFidelityPoints;
@@ -92,7 +92,7 @@ public class Customer implements UserDetails {
 
     /* ------ CONSTRUCT ------ */
 
-    public Customer(Integer customerID, String username, String password, String confirmPassword, String authorities, String firstName, String lastName, String phoneNumber, LocalDate birthDate, String strBirthDate, Integer nbFidelityPoints, String streetName, String streetNumber, String locality, Integer zipCode, String country, Boolean accountNonExpired, Boolean accountNonLocked, Boolean credentialsNonExpired, Boolean enabled) {
+    public Customer(Integer customerID, String username, String password, String confirmPassword, String authorities, String firstName, String lastName, String phoneNumber, /*LocalDate birthDate, String strBirthDate,*/ Integer nbFidelityPoints, String streetName, String streetNumber, String locality, Integer zipCode, String country, Boolean accountNonExpired, Boolean accountNonLocked, Boolean credentialsNonExpired, Boolean enabled) {
         this.customerID = customerID;
         this.username = username;
         this.password = password;
@@ -101,8 +101,8 @@ public class Customer implements UserDetails {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
-        this.birthDate = birthDate;
-        this.strBirthDate = strBirthDate;
+        /*this.birthDate = birthDate;
+        this.strBirthDate = strBirthDate;*/
         this.nbFidelityPoints = nbFidelityPoints;
         this.streetName = streetName;
         this.streetNumber = streetNumber;
@@ -191,13 +191,13 @@ public class Customer implements UserDetails {
         return phoneNumber;
     }
 
-    public LocalDate getBirthDate() {
+    /*public LocalDate getBirthDate() {
         return birthDate;
     }
 
     public String getStrBirthDate() {
         return strBirthDate;
-    }
+    }*/
 
     public Integer getNbFidelityPoints() {
         return nbFidelityPoints;
@@ -261,13 +261,13 @@ public class Customer implements UserDetails {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
+    /*public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
     public void setStrBirthDate(String strBirthDate) {
         this.strBirthDate = strBirthDate;
-    }
+    }*/
 
     public void setNbFidelityPoints(Integer nbFidelityPoints) {
         this.nbFidelityPoints = nbFidelityPoints;

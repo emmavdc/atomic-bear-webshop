@@ -12,6 +12,6 @@ public class AbsLogController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String goToLog (Model model) {
-        return "redirect:home";
+        return "redirect:/home";
     }
 }

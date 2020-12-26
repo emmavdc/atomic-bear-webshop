@@ -10,4 +10,12 @@ public class Category {
     @NotNull
     @Min(value = 1)
     private Integer categoryID;
+
+    public Integer getCategoryID() {
+        return categoryID;
+    }
+
+    public void setCategoryID(Integer categoryID) {
+        this.categoryID = categoryID;
+    }
 }

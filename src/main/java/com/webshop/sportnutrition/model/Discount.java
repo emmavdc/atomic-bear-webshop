@@ -19,4 +19,32 @@ public class Discount {
     @NotNull
     @Size(min = 3, max = 45)
     private String label;
+
+    /* ------ GETTERS ------ */
+
+    public Integer getDiscountID() {
+        return discountID;
+    }
+
+    public Integer getDiscount() {
+        return discount;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    /* ------ SETTERS ------ */
+
+    public void setDiscountID(Integer discountID) {
+        this.discountID = discountID;
+    }
+
+    public void setDiscount(Integer discount) {
+        this.discount = discount;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
 }

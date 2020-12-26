@@ -10,4 +10,12 @@ public class Language {
     @NotNull
     @Min(value = 1)
     private Integer languageID;
+
+    public Integer getLanguageID() {
+        return languageID;
+    }
+
+    public void setLanguageID(Integer languageID) {
+        this.languageID = languageID;
+    }
 }

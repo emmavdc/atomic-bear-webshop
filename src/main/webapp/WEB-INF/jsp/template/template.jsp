@@ -11,7 +11,7 @@
 
         <!-- BOOTSTRAP SOCIAL ICON AND FONTAWESOME ICON -->
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-        <link type="text/css" href= "<spring:url value='/css/bootstrap-social.css'/>" rel="Stylesheet" />
+        <link type="text/css" href= "<spring:url value='/resources/static/css/bootstrap-social.css'/>" rel="Stylesheet" />
 
         <!-- LANGUAGE -->
         <spring:url var="localeFr" value="">
@@ -42,7 +42,7 @@
             <nav id="navbar_top" class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <%-- <a href="<spring:url value='/home'/>"><img src='<spring:url value = "/images/logo_img.png"/>' width="110" height="110" class="d-inline-block align-top" alt="" loading="lazy"></a>
                 <a class="navbar-brand navBarTitle" href="<spring:url value='/home'/>">Atomic Bear</a> --%>
-                <a href="<spring:url value='/home'/>"><img src='<spring:url value = "/images/logo_titre.png"/>' width="260" height="110" class="d-inline-block align-top" alt="" loading="lazy"></a>
+                <a href="<spring:url value='/home'/>"><img src='<spring:url value = "/images/logo_title.png"/>' width="260" height="110" class="d-inline-block align-top" alt="" loading="lazy"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -56,14 +56,14 @@
                                 <spring:message code="catalog" />
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Protéines</a>
-                                <a class="dropdown-item" href="#">Développement musculaire</a>
-                                <a class="dropdown-item" href="#">Energie (et endurance)</a>
-                                <a class="dropdown-item" href="#">Brûleurs de gras et perte de poids</a>
-                                <a class="dropdown-item" href="#">Vitamines</a>
-                                <a class="dropdown-item" href="#">Encas et boissons</a>
+                                <a class="dropdown-item" href="<spring:url value='/shop/proteins'/>">${proteins}</a>
+                                <a class="dropdown-item" href="#">${muscleDev}</a>
+                                <a class="dropdown-item" href="#">${energy}</a>
+                                <a class="dropdown-item" href="#">${fatBurners}</a>
+                                <a class="dropdown-item" href="#">${vitamins}</a>
+                                <a class="dropdown-item" href="#">${snackAndDrinks}</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Accessoires</a>
+                                <a class="dropdown-item" href="#">${accessories}</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">

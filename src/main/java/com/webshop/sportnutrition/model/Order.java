@@ -23,4 +23,48 @@ public class Order {
 
     @NotNull
     private String customerFK;
+
+    /* ------ GETTERS ------ */
+
+    public Integer getOrderID() {
+        return orderID;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public Boolean getPaid() {
+        return isPaid;
+    }
+
+    public Integer getReduction() {
+        return reduction;
+    }
+
+    public String getCustomerFK() {
+        return customerFK;
+    }
+
+    /* ------ SETTERS ------ */
+
+    public void setOrderID(Integer orderID) {
+        this.orderID = orderID;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setPaid(Boolean paid) {
+        isPaid = paid;
+    }
+
+    public void setReduction(Integer reduction) {
+        this.reduction = reduction;
+    }
+
+    public void setCustomerFK(String customerFK) {
+        this.customerFK = customerFK;
+    }
 }

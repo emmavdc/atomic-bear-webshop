@@ -1,9 +1,18 @@
 package com.webshop.sportnutrition.controller;
 
 import com.webshop.sportnutrition.Constants;
+import com.webshop.sportnutrition.dataAccess.dao.CategoryDataAccess;
 import com.webshop.sportnutrition.dataAccess.dao.CustomerDataAccess;
+import com.webshop.sportnutrition.dataAccess.dao.LanguageDataAccess;
+import com.webshop.sportnutrition.dataAccess.dao.TranslationDataAccess;
 import com.webshop.sportnutrition.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
+import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -24,14 +35,17 @@ import java.util.Locale;
 @Controller
 @RequestMapping(value="/registration")
 @SessionAttributes({Constants.CURRENT_USER})
-public class UserInscriptionController {
+public class UserInscriptionController extends MasterController {
 
-    /*private HobbiesService hobbiesService;*/
     private CustomerDataAccess customerDAO;
+    //Extends
+    private LanguageDataAccess languageDAO;
+    private CategoryDataAccess categoryDAO;
+    private TranslationDataAccess translationDAO;
 
     @Autowired
-    public UserInscriptionController(/*HobbiesService hobbiesService,*/ CustomerDataAccess customerDAO) {
-        /*this.hobbiesService = hobbiesService;*/
+    public UserInscriptionController(CustomerDataAccess customerDAO, LanguageDataAccess languageDAO, CategoryDataAccess categoryDAO, TranslationDataAccess translationDAO) {
+        super(languageDAO, categoryDAO, translationDAO); //Extends
         this.customerDAO = customerDAO;
     }
 
@@ -42,6 +56,7 @@ public class UserInscriptionController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String userReg (Model model) {
+        super.categories(model);
         model.addAttribute("title", "Inscription");
         model.addAttribute("registrationForm", customer());
         //model.addAttribute("hobbies", hobbiesService.getHobbies());
@@ -51,7 +66,8 @@ public class UserInscriptionController {
     @RequestMapping(value="/sendReg", method=RequestMethod.POST)
     public String getFormData(Model model,
                             @Valid @ModelAttribute(value= Constants.CURRENT_USER) Customer customer,
-                            final BindingResult errors) throws ParseException {
+                            final BindingResult errors,
+                              HttpServletRequest request) throws ServletException {
 
         /* ------ Test match pwd ------ */
         if (!customer.getPassword().equals(customer.getConfirmPassword()))
@@ -97,7 +113,7 @@ public class UserInscriptionController {
         Customer customerBD = customerDAO.findByUsername(customer.getUsername());
         if(customerBD != null)
             model.addAttribute("usernameAlreadyExist", "usernameAlreadyExist");
-        System.out.println("Customer = " + customerBD + " --- Customer exist : " + (customerBD != null));
+        //System.out.println("Customer = " + customerBD + " --- Customer exist : " + (customerBD != null));
 
         if (!errors.hasErrors() && !model.containsAttribute("pwdDontMatch") && !model.containsAttribute("usernameAlreadyExist")/* && !model.containsAttribute("birthDateError")*/) {
 
@@ -111,32 +127,22 @@ public class UserInscriptionController {
             customer.setNbFidelityPoints(0);
 
             customerDAO.save(customer);
-            model.addAttribute("log", customer.getUsername());
-            model.addAttribute("pwd", customer.getPassword());
             //return "redirect:/myAccount";
             //return "redirect:/login";
             //return "redirect:/goToLogin";
+            authenticateUserAndSetSession(customer, request);
             return "redirect:/home";
-
-            //Renvoi une erreur (mettre le user en session ?)
-            /*model.addAttribute("title", "Login");
-            model.addAttribute("user", new Customer());
-            return "integrated:login";*/
         }
-
-
-        //System.out.println("Erreurs : " + errors);
-            //return "integrated:gift";
-
-        //String errorMsg = "Sorry, the form is not valid!";
-        //model.addAttribute("message", errorMsg);
-        //model.addAttribute("hobbies", hobbiesService.getHobbies());
 
         model.addAttribute("errors", errors);
         return "integrated:userInscription";
-        //return "userInscription";
+    }
 
-        //return "redirect/welcome";
+    private void authenticateUserAndSetSession(Customer user, HttpServletRequest request) throws ServletException {
+        String username = user.getUsername();
+        String password = user.getPassword();
+
+        request.login(username, password);
     }
 
 

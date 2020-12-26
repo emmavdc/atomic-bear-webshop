@@ -24,12 +24,6 @@ public class CategoryDAO implements CategoryDataAccess {
         this.providerConverter = providerConverter;
     }
 
-    /*public Category save(Category category) {
-        CategoryEntity categoryEntity = providerConverter.customerModelToCustomerEntity(customer);
-        customerEntity = customerRepository.save(customerEntity);
-        return providerConverter.customerEntityToCustomerModel(customerEntity);
-    }*/
-
     @Override
     public ArrayList<Category> getAll() {
         //return providerConverter.categoryEntityToCategoryModel(categoryRepository.findAll());

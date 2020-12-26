@@ -89,10 +89,10 @@ CREATE TABLE `online_nutrition_store`.`order_line` (
   FOREIGN KEY (`order_fk`) REFERENCES `order` (`order_id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `online_nutrition_store`.`hibernate_sequence` (
+/*CREATE TABLE `online_nutrition_store`.`hibernate_sequence` (
   `sequence_name` varchar(255) NOT NULL,
 	`next_val` INTEGER NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;*/
 
 DROP trigger IF EXISTS online_nutrition_store.decrease_stock;
 
@@ -148,9 +148,9 @@ INSERT INTO `online_nutrition_store`.`translation` (`label`, `category_fk`, `lan
 INSERT INTO `online_nutrition_store`.`translation` (`label`, `category_fk`, `language_fk`) VALUES ('Accessoires', 7, 1);
 INSERT INTO `online_nutrition_store`.`translation` (`label`, `category_fk`, `language_fk`) VALUES ('Accessories', 7, 2);
 
-INSERT INTO `online_nutrition_store`.`customer` (`username`, `password`, `authorities`, `first_name`, `last_name`, `phone_number`, `birth_date`, `street_name`, `street_number`, `locality`, `zip_code`, `country`, `account_non_expired`, `account_non_locked`, `credentials_non_expired`, `enabled`) VALUES ('nico6041@hotmail.be', '$2a$10$7AShmOyqEhXmDW1HOOHHMe7TnVsVvqrVgMF/Fgoobd6MZJ4mSbFCi', 'ROLE_USER', 'Nicolas', 'Gatta', '0479837036', '1997-11-25', 'rue des bouleaxu', '27', 'Courcelles', 5780, 'Belgique', 1, 1, 1, 1);
-INSERT INTO `online_nutrition_store`.`customer` (`username`, `password`, `authorities`, `first_name`, `last_name`, `phone_number`, `birth_date`, `street_name`, `street_number`, `locality`, `zip_code`, `country`, `account_non_expired`, `account_non_locked`, `credentials_non_expired`, `enabled`) VALUES ('dylan.sohet@gmail.com', '$2a$10$7AShmOyqEhXmDW1HOOHHMe7TnVsVvqrVgMF/Fgoobd6MZJ4mSbFCi', 'ROLE_ADMIN', 'Dylan', 'Sohet', '0478070905', '2000-11-20', 'Rue du chêne', '50A', 'Belfosse', 9532, 'Belgique', 1, 1, 1, 1);
-INSERT INTO `online_nutrition_store`.`customer` (`username`, `password`, `authorities`, `first_name`, `last_name`, `phone_number`, `birth_date`, `street_name`, `street_number`, `locality`, `zip_code`, `country`, `account_non_expired`, `account_non_locked`, `credentials_non_expired`, `enabled`) VALUES ('Michou7854@outlook.be', '$2a$10$7AShmOyqEhXmDW1HOOHHMe7TnVsVvqrVgMF/Fgoobd6MZJ4mSbFCi', 'ROLE_USER', 'Michel', 'Forever', '0471258963', '1995-06-11', 'Rue Tonight', '85A', 'Fiesta', 4578, 'Belgique', 1, 1, 1, 1);
+INSERT INTO `online_nutrition_store`.`customer` (`username`, `password`, `authorities`, `first_name`, `last_name`, `phone_number`, /*`birth_date`,*/ `street_name`, `street_number`, `locality`, `zip_code`, `country`, `account_non_expired`, `account_non_locked`, `credentials_non_expired`, `enabled`) VALUES ('nico6041@hotmail.be', '$2a$10$7AShmOyqEhXmDW1HOOHHMe7TnVsVvqrVgMF/Fgoobd6MZJ4mSbFCi', 'ROLE_USER', 'Nicolas', 'Gatta', '0479837036', /*'1997-11-25',*/ 'rue des bouleaxu', '27', 'Courcelles', 5780, 'Belgique', 1, 1, 1, 1);
+INSERT INTO `online_nutrition_store`.`customer` (`username`, `password`, `authorities`, `first_name`, `last_name`, `phone_number`, /*`birth_date`,*/ `street_name`, `street_number`, `locality`, `zip_code`, `country`, `account_non_expired`, `account_non_locked`, `credentials_non_expired`, `enabled`) VALUES ('dylan.sohet@gmail.com', '$2a$10$7AShmOyqEhXmDW1HOOHHMe7TnVsVvqrVgMF/Fgoobd6MZJ4mSbFCi', 'ROLE_ADMIN', 'Dylan', 'Sohet', '0478070905', /*'2000-11-20',*/ 'Rue du chêne', '50A', 'Belfosse', 9532, 'Belgique', 1, 1, 1, 1);
+INSERT INTO `online_nutrition_store`.`customer` (`username`, `password`, `authorities`, `first_name`, `last_name`, `phone_number`, /*`birth_date`,*/ `street_name`, `street_number`, `locality`, `zip_code`, `country`, `account_non_expired`, `account_non_locked`, `credentials_non_expired`, `enabled`) VALUES ('Michou7854@outlook.be', '$2a$10$7AShmOyqEhXmDW1HOOHHMe7TnVsVvqrVgMF/Fgoobd6MZJ4mSbFCi', 'ROLE_USER', 'Michel', 'Forever', '0471258963', /*'1995-06-11',*/ 'Rue Tonight', '85A', 'Fiesta', 4578, 'Belgique', 1, 1, 1, 1);
 
 INSERT INTO `online_nutrition_store`.`discount` (`discount`,`label`) VALUES (15, 'Christmas');
 INSERT INTO `online_nutrition_store`.`discount` (`discount`,`label`) VALUES (70, 'Destocking');

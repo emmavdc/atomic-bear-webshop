@@ -21,4 +21,40 @@ public class Translation {
 
     @NotNull
     private Integer languageFK;
+
+    /* ------ GETTERS ------ */
+
+    public Integer getTranslationID() {
+        return translationID;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public Integer getCategoryFK() {
+        return categoryFK;
+    }
+
+    public Integer getLanguageFK() {
+        return languageFK;
+    }
+
+    /* ------ SETTERS ------ */
+
+    public void setTranslationID(Integer translationID) {
+        this.translationID = translationID;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public void setCategoryFK(Integer categoryFK) {
+        this.categoryFK = categoryFK;
+    }
+
+    public void setLanguageFK(Integer languageFK) {
+        this.languageFK = languageFK;
+    }
 }

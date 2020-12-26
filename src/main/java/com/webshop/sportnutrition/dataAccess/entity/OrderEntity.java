@@ -23,4 +23,48 @@ public class OrderEntity {
     @JoinColumn(name="customer_fk", referencedColumnName = "customer_id")
     @ManyToOne
     private CustomerEntity customer;
+
+    /* ------ GETTERS ------ */
+
+    public Integer getOrderID() {
+        return orderID;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public Boolean getPaid() {
+        return isPaid;
+    }
+
+    public Integer getReduction() {
+        return reduction;
+    }
+
+    public CustomerEntity getCustomer() {
+        return customer;
+    }
+
+    /* ------ SETTERS ------ */
+
+    public void setOrderID(Integer orderID) {
+        this.orderID = orderID;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setPaid(Boolean paid) {
+        isPaid = paid;
+    }
+
+    public void setReduction(Integer reduction) {
+        this.reduction = reduction;
+    }
+
+    public void setCustomer(CustomerEntity customer) {
+        this.customer = customer;
+    }
 }

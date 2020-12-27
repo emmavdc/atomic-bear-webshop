@@ -17,7 +17,7 @@ public class Translation {
     private String label;
 
     @NotNull
-    private Integer categoryFK;
+    private Category category;
 
     @NotNull
     private Integer languageFK;
@@ -32,8 +32,8 @@ public class Translation {
         return label;
     }
 
-    public Integer getCategoryFK() {
-        return categoryFK;
+    public Category getCategory() {
+        return category;
     }
 
     public Integer getLanguageFK() {
@@ -50,8 +50,8 @@ public class Translation {
         this.label = label;
     }
 
-    public void setCategoryFK(Integer categoryFK) {
-        this.categoryFK = categoryFK;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public void setLanguageFK(Integer languageFK) {

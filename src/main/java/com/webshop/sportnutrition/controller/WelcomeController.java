@@ -17,25 +17,16 @@ import java.util.ArrayList;
 public class WelcomeController extends MasterController {
 
     private CustomerDataAccess customerDAO;
-    //Extends
-    private LanguageDataAccess languageDAO;
-    private CategoryDataAccess categoryDAO;
-    private TranslationDataAccess translationDAO;
+
 
     @Autowired
-    public WelcomeController(CustomerDataAccess customerDAO, LanguageDataAccess languageDAO, CategoryDataAccess categoryDAO, TranslationDataAccess translationDAO) {
-        super(languageDAO, categoryDAO, translationDAO); //Extends
+    public WelcomeController(CustomerDataAccess customerDAO) {
         this.customerDAO = customerDAO;
     }
 
     @RequestMapping(method = RequestMethod.GET)
     public String home(Model model){
-        super.categories(model);
-        //System.out.println(categoryDAO.getAll().get(1).getCategoryID());
         model.addAttribute("title", "Sport nutrition");
-        /*ArrayList<Category> categories = categoryDAO.getAll();
-        model.addAttribute("categories", categoryDAO.getAll());*/
-        //model.addAttribute("user", customerDAO.findByUsername("dylan.sohet@gmail.com"));
         return "integrated:welcome";
     }
 }

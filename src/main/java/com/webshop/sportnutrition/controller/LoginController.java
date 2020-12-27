@@ -14,19 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value="/login")
 public class LoginController extends MasterController {
 
-    //Extends
-    private LanguageDataAccess languageDAO;
-    private CategoryDataAccess categoryDAO;
-    private TranslationDataAccess translationDAO;
-
     @Autowired
-    public LoginController(LanguageDataAccess languageDAO, CategoryDataAccess categoryDAO, TranslationDataAccess translationDAO) {
-        super(languageDAO, categoryDAO, translationDAO); //Extends
+    public LoginController() {
     }
 
     @RequestMapping(method = RequestMethod.GET)
     public String login(Model model){
-        super.categories(model);
         model.addAttribute("title", "Login");
         model.addAttribute("user", new Customer());
         return "integrated:login";

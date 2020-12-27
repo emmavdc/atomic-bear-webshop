@@ -17,8 +17,8 @@ import java.util.List;
 @Transactional
 public class TranslationDAO implements TranslationDataAccess {
 
-    public TranslationRepository translationRepository;
-    public ProviderConverter providerConverter;
+    private TranslationRepository translationRepository;
+    private ProviderConverter providerConverter;
 
     @Autowired
     public TranslationDAO(TranslationRepository translationRepository, ProviderConverter providerConverter) {
@@ -32,13 +32,12 @@ public class TranslationDAO implements TranslationDataAccess {
     }
 
     @Override
-    public Translation getByCategoryAndLanguage(Category category, Language language) {
-        return providerConverter.translationEntityToTranslationModel(translationRepository.findByCategoryAndLanguage(
-                providerConverter.categoryModelToCategoryEntity(category),
-                providerConverter.languageModelToLanguageEntity(language)));
+    public ArrayList<Translation> getCategoryByLanguage(Language language) {
+        return convertListFromDBToArrayList(translationRepository
+                .findByLanguage(providerConverter.languageModelToLanguageEntity(language)));
     }
 
-    public ArrayList<Translation> convertListFromDBToArrayList(List<TranslationEntity> listFromDB) {
+    private ArrayList<Translation> convertListFromDBToArrayList(List<TranslationEntity> listFromDB) {
         ArrayList<Translation> translations = new ArrayList<>();
         for (TranslationEntity entity : listFromDB) {
             Translation translation = providerConverter.translationEntityToTranslationModel(entity);

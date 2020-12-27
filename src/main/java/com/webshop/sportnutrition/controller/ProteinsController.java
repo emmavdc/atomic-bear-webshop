@@ -13,19 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value="/shop/proteins")
 public class ProteinsController extends MasterController {
 
-    //Extends
-    private LanguageDataAccess languageDAO;
-    private CategoryDataAccess categoryDAO;
-    private TranslationDataAccess translationDAO;
 
     @Autowired
-    public ProteinsController(LanguageDataAccess languageDAO, CategoryDataAccess categoryDAO, TranslationDataAccess translationDAO) {
-        super(languageDAO, categoryDAO, translationDAO); //Extends
+    public ProteinsController() {
     }
 
     @RequestMapping(method = RequestMethod.GET)
     public String login(Model model){
-        super.categories(model);
         model.addAttribute("title", "Protéines");
         return "integrated:proteinsItems";
     }

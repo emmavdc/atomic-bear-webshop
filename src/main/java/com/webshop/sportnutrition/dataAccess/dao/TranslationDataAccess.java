@@ -10,5 +10,5 @@ public interface TranslationDataAccess {
 
     public ArrayList<Translation> getAll();
 
-    public Translation getByCategoryAndLanguage(Category category, Language language);
+    public ArrayList<Translation> getCategoryByLanguage(Language language);
 }

@@ -15,19 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value="/aboutUs")
 public class AboutController extends MasterController {
 
-    //Extends
-    private LanguageDataAccess languageDAO;
-    private CategoryDataAccess categoryDAO;
-    private TranslationDataAccess translationDAO;
-
     @Autowired
-    public AboutController(LanguageDataAccess languageDAO, CategoryDataAccess categoryDAO, TranslationDataAccess translationDAO) {
-        super(languageDAO, categoryDAO, translationDAO); //Extends
+    public AboutController() {
     }
 
     @RequestMapping(method = RequestMethod.GET)
     public String about(Model model){
-        super.categories(model);
         model.addAttribute("title", "A propos de nous");
         return "integrated:about";
     }

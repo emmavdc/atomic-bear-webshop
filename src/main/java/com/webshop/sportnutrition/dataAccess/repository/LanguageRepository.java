@@ -9,5 +9,4 @@ import java.util.List;
 @Repository
 public interface LanguageRepository extends JpaRepository<LanguageEntity, Integer> {
 
-    List<LanguageEntity> findAll();
 }

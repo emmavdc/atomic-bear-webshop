@@ -57,7 +57,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="<spring:url value='/shop/proteins'/>">${proteins}</a>
-                                <a class="dropdown-item" href="#">${muscleDev}</a>
+                                <a class="dropdown-item" href="<spring:url value='/shop/muscledev'/>">${muscleDev}</a>
                                 <a class="dropdown-item" href="#">${energy}</a>
                                 <a class="dropdown-item" href="#">${fatBurners}</a>
                                 <a class="dropdown-item" href="#">${vitamins}</a>

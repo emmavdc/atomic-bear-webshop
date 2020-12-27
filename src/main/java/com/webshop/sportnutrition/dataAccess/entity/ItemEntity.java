@@ -25,6 +25,10 @@ public class ItemEntity {
     @Column(name="current_inventory")
     private Integer currentInventory;
 
+    @JoinColumn(name="category_fk", referencedColumnName = "category_id")
+    @ManyToOne
+    private CategoryEntity category;
+
     /* ------ GETTERS ------ */
 
     public Integer getItemID() {

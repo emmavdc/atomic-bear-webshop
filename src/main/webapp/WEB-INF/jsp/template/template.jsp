@@ -42,7 +42,7 @@
             <nav id="navbar_top" class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <%-- <a href="<spring:url value='/home'/>"><img src='<spring:url value = "/images/logo_img.png"/>' width="110" height="110" class="d-inline-block align-top" alt="" loading="lazy"></a>
                 <a class="navbar-brand navBarTitle" href="<spring:url value='/home'/>">Atomic Bear</a> --%>
-                <a href="<spring:url value='/home'/>"><img src='<spring:url value = "/images/logo_title.png"/>' width="260" height="110" class="d-inline-block align-top" alt="" loading="lazy"></a>
+                <a href="<spring:url value='/'/>"><img src='<spring:url value = "/images/logo_title.png"/>' width="260" height="110" class="d-inline-block align-top" alt="" loading="lazy"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>

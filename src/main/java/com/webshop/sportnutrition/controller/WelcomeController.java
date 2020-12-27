@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.util.ArrayList;
 
 @Controller
-@RequestMapping(value="/home")
+@RequestMapping(value="/")
 public class WelcomeController extends MasterController {
 
     private CustomerDataAccess customerDAO;

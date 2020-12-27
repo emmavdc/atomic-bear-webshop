@@ -131,7 +131,7 @@ public class UserInscriptionController extends MasterController {
             //return "redirect:/login";
             //return "redirect:/goToLogin";
             authenticateUserAndSetSession(customer, request);
-            return "redirect:/home";
+            return "redirect:/";
         }
 
         model.addAttribute("errors", errors);

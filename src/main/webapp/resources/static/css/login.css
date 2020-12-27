@@ -1,0 +1,18 @@
+#logForm {
+    text-align: center;
+    margin: 10% 30%;
+}
+
+#regButton {
+    margin-bottom: 5%;
+}
+
+#regForm {
+    text-align: center;
+    margin: 5% 25%;
+}
+
+.regErrors {
+    color: lightgray;
+    font-style: italic;
+}

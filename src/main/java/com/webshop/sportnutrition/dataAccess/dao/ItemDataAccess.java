@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public interface ItemDataAccess {
 
-    ArrayList<Item> findByCategoryOrderByLabel(Integer categoryID);
+    ArrayList<Item> getByCategory(Integer categoryID);
+    Item getByItemID(Integer itemID);
 
 }

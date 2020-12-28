@@ -29,6 +29,13 @@ public class ItemEntity {
     @ManyToOne
     private CategoryEntity category;
 
+    @JoinColumn(name="discount_fk", referencedColumnName = "discount_id")
+    @ManyToOne
+    private DiscountEntity discount;
+
+    @Column(name="file_path")
+    private String filePath;
+
     /* ------ GETTERS ------ */
 
     public Integer getItemID() {
@@ -55,6 +62,18 @@ public class ItemEntity {
         return currentInventory;
     }
 
+    public CategoryEntity getCategory() {
+        return category;
+    }
+
+    public DiscountEntity getDiscount() {
+        return discount;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
     /* ------ SETTERS ------ */
 
     public void setItemID(Integer itemID) {
@@ -79,5 +98,17 @@ public class ItemEntity {
 
     public void setCurrentInventory(Integer currentInventory) {
         this.currentInventory = currentInventory;
+    }
+
+    public void setCategory(CategoryEntity category) {
+        this.category = category;
+    }
+
+    public void setDiscount(DiscountEntity discount) {
+        this.discount = discount;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
     }
 }

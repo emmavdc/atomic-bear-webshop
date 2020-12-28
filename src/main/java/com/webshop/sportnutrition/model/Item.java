@@ -32,6 +32,15 @@ public class Item {
     @Min(value = 1)
     private Integer currentInventory;
 
+    @NotNull
+    private Category category;
+
+    @NotNull
+    private Discount discount;
+
+    @NotNull
+    private String filePath;
+
     /* ------ GETTERS ------ */
 
     public Integer getItemID() {
@@ -58,6 +67,18 @@ public class Item {
         return currentInventory;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public Discount getDiscount() {
+        return discount;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
     /* ------ SETTERS ------ */
 
     public void setItemID(Integer itemID) {
@@ -82,5 +103,17 @@ public class Item {
 
     public void setCurrentInventory(Integer currentInventory) {
         this.currentInventory = currentInventory;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public void setDiscount(Discount discount) {
+        this.discount = discount;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
     }
 }

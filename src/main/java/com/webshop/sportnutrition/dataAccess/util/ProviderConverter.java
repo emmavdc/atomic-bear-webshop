@@ -6,12 +6,10 @@ import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.springframework.stereotype.Component;
 
-import java.sql.Date;
-
 @Component
 public class ProviderConverter {
 
-    private Mapper mapper = new DozerBeanMapper();
+    private final Mapper mapper = new DozerBeanMapper();
 
     /* ------------ Customer ------------ */
 
@@ -19,22 +17,6 @@ public class ProviderConverter {
         CustomerEntity customerEntity = mapper.map(customer, CustomerEntity.class);
         CryptPassword cryptPassword = new CryptPassword();
         customerEntity.setPassword(cryptPassword.crypt(customer.getPassword()));
-        //customerEntity.setBirthDate(new Date(customer.getBirthDate().getTime()));
-        //customerEntity.setBirthDate(Date.valueOf(customer.getBirthDate()));
-        //customerEntity.setAuthorities(customer.getAuthorities());
-        /*customerEntity.setAccountNonExpired(customer.isAccountNonExpired());
-        customerEntity.setAccountNonLocked(customer.isAccountNonLocked());
-        customerEntity.setCredentialsNonExpired(customer.isCredentialsNonExpired());
-        customerEntity.setEnabled(customer.isEnabled());*/
-
-        //Remplissage ici car les valeurs par défaut de la BD ne s'appliquent pas
-        /*customerEntity.setAccountNonExpired(true);
-        customerEntity.setAccountNonLocked(true);
-        customerEntity.setCredentialsNonExpired(true);
-        customerEntity.setEnabled(true);
-        customerEntity.setAuthorities("ROLE_USER");
-        customerEntity.setNbFidelityPoints(0);*/
-        //Remplissage de l'objet dans controller car les valeurs par défaut de la BD ne sont pas effective
         return customerEntity;
     }
 

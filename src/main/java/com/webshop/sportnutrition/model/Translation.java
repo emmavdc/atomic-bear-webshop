@@ -1,5 +1,6 @@
 package com.webshop.sportnutrition.model;
 
+
 import com.sun.istack.NotNull;
 
 import javax.validation.constraints.Min;

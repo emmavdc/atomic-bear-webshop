@@ -21,7 +21,7 @@
     <div class="form-group row">
         <form:label path="password" class="col-sm-4 col-form-label"><spring:message code="password"/></form:label>
         <div class="col-sm-8">
-            <form:input path="password" class="form-control"></form:input>
+            <form:input type="password" path="password" class="form-control"></form:input>
         </div>
         <form:errors path="password" class="regErrors"/>
     </div>
@@ -29,7 +29,7 @@
     <div class="form-group row">
         <form:label path="confirmPassword" class="col-sm-4 col-form-label"><spring:message code="confirmPassword"/></form:label>
         <div class="col-sm-8">
-            <form:input path="confirmPassword" class="form-control"></form:input>
+            <form:input type="password" path="confirmPassword" class="form-control"></form:input>
         </div>
         <span class="regErrors"><spring:message code="${pwdDontMatch}"/></span>
     </div>

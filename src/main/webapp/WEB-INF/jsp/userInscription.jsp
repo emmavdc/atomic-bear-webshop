@@ -1,9 +1,11 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <%@ include file ="include/importTags.jsp" %>
 
+
+<%--@elvariable id="currentUser" type="Customer"--%>
 <form:form id="regForm"
            method="POST"
-           action="/sportNutrition/registration/sendReg"
+           action="/sportNutrition/registration"
            modelAttribute="currentUser">
 
     <div class="form-group row">
@@ -11,9 +13,6 @@
         <div class="col-sm-8">
             <form:input path="username" class="form-control"></form:input>
         </div>
-        <%-- <div class="note alert alert-danger">
-            <form:errors path="username" class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"/>
-        </div> --%>
         <form:errors path="username" class="regErrors"/>
         <span class="regErrors"><spring:message code="${usernameAlreadyExist}"/></span>
     </div>
@@ -21,7 +20,7 @@
     <div class="form-group row">
         <form:label path="password" class="col-sm-4 col-form-label"><spring:message code="password"/></form:label>
         <div class="col-sm-8">
-            <form:input path="password" class="form-control"></form:input>
+            <form:input type="password" path="password" class="form-control"></form:input>
         </div>
         <form:errors path="password" class="regErrors"/>
     </div>
@@ -29,7 +28,7 @@
     <div class="form-group row">
         <form:label path="confirmPassword" class="col-sm-4 col-form-label"><spring:message code="confirmPassword"/></form:label>
         <div class="col-sm-8">
-            <form:input path="confirmPassword" class="form-control"></form:input>
+            <form:input type="password" path="confirmPassword" class="form-control"></form:input>
         </div>
         <span class="regErrors"><spring:message code="${pwdDontMatch}"/></span>
     </div>
@@ -57,15 +56,6 @@
         </div>
         <form:errors path="phoneNumber" class="regErrors"/>
     </div>
-
-    <%-- <div class="form-group row">
-        <form:label path="strBirthDate" class="col-sm-4 col-form-label"><spring:message code="birthDate"/> (<spring:message code="datePattern"/>)</form:label>
-        <div class="col-sm-8">
-            <form:input path="strBirthDate" type="date" value="1800-01-01" class="form-control"></form:input>
-        </div> --%>
-        <%-- <form:errors path="birthDate" class="regErrors"/> --%>
-        <%-- <span class="regErrors"><spring:message code="${birthDateError}"/></span>
-    </div> --%>
 
     <div class="form-group row">
         <form:label path="streetName" class="col-sm-4 col-form-label"><spring:message code="streetName"/></form:label>

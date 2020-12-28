@@ -57,7 +57,7 @@ public class UserInscriptionController extends MasterController {
         return "integrated:userInscription";
     }
 
-    @RequestMapping(value="/sendReg", method=RequestMethod.POST)
+    @RequestMapping(method=RequestMethod.POST)
     public String getFormData(Model model,
                               @Valid @ModelAttribute(value= Constants.CURRENT_USER) Customer customer,
                               final BindingResult errors,

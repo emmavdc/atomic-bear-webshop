@@ -61,6 +61,7 @@ CREATE TABLE `online_nutrition_store`.`item` (
   `current_inventory` int NOT NULL,
   `category_fk` int NOT NULL,
   `discount_fk` int DEFAULT NULL,
+  `file_path` varchar(45) NOT NULL,
   PRIMARY KEY (`item_id`),
   FOREIGN KEY (`category_fk`) REFERENCES `category` (`category_id`),
   FOREIGN KEY (`discount_fk`) REFERENCES `discount` (`discount_id`) ON DELETE SET NULL
@@ -156,8 +157,12 @@ INSERT INTO `online_nutrition_store`.`discount` (`discount`,`label`) VALUES (70,
 INSERT INTO `online_nutrition_store`.`discount` (`discount`,`label`) VALUES (40, 'Black Friday');
 INSERT INTO `online_nutrition_store`.`discount` (`discount`,`label`) VALUES (25, 'Cyber Monday');
 
-INSERT INTO `online_nutrition_store`.`item` (`label`, `description`, `price`, `brand`, `current_inventory`, `category_fk`, `discount_fk`) VALUES ('Whey', 'A protein powder', 20, 'Prozis', 150, 1, 1);
-INSERT INTO `online_nutrition_store`.`item` (`label`, `description`, `price`, `brand`, `current_inventory`, `category_fk`, `discount_fk`) VALUES ('Whey isolate', 'A protein powder with less sugar and fat', 35, 'Prozis', 100, 1, NULL);
-INSERT INTO `online_nutrition_store`.`item` (`label`, `description`, `price`, `brand`, `current_inventory`, `category_fk`, `discount_fk`) VALUES ('Mass gainer', 'A protein powder that will help you to gain mass', 40, 'MyProtein', 200, 2, 3);
-INSERT INTO `online_nutrition_store`.`item` (`label`, `description`, `price`, `brand`, `current_inventory`, `category_fk`, `discount_fk`) VALUES ('BCAA', 'Amino acids in powder', 30, 'Prozis', 150, 1, NULL);
-INSERT INTO `online_nutrition_store`.`item` (`label`, `description`, `price`, `brand`, `current_inventory`, `category_fk`, `discount_fk`) VALUES ('BCAA', 'Amino acids in caps', 25, 'Prozis', 200, 1, NULL);
+INSERT INTO `online_nutrition_store`.`item` (`label`, `description`, `price`, `brand`, `current_inventory`, `category_fk`, `discount_fk`, `file_path`) VALUES ('Atomic Whey', 'A whey concentrate protein powder', 20, 'Atomic Bear', 150, 1, 1, 'atomicWhey.jpg');
+INSERT INTO `online_nutrition_store`.`item` (`label`, `description`, `price`, `brand`, `current_inventory`, `category_fk`, `discount_fk`, `file_path`) VALUES ('Mutant Whey', 'A multi whey protein blend powder', 35, 'Mutant', 100, 1, NULL, 'mutantWhey.jpg');
+INSERT INTO `online_nutrition_store`.`item` (`label`, `description`, `price`, `brand`, `current_inventory`, `category_fk`, `discount_fk`, `file_path`) VALUES ('Hydro Isolate Whey', 'Exceptionally bioavailable protein source', 15, 'Prozis', 150, 1, 3, 'hydroIsolateWhey.jpg');
+INSERT INTO `online_nutrition_store`.`item` (`label`, `description`, `price`, `brand`, `current_inventory`, `category_fk`, `discount_fk`, `file_path`) VALUES ('Hydro Isolate Whey Zero', 'Exceptionally bioavailable protein source', 30, 'Prozis', 80, 1, NULL, 'hydroIsolateWheyZero.jpg');
+INSERT INTO `online_nutrition_store`.`item` (`label`, `description`, `price`, `brand`, `current_inventory`, `category_fk`, `discount_fk`, `file_path`) VALUES ('Prime Isolate Whey', 'The most powerful whey produced in the market', 45, 'Prozis', 50, 1, NULL, 'primeIsolateWhey.jpg');
+INSERT INTO `online_nutrition_store`.`item` (`label`, `description`, `price`, `brand`, `current_inventory`, `category_fk`, `discount_fk`, `file_path`) VALUES ('Pure Native Isolate Whey', 'Ultra high protein with stevia extract', 25, 'Prozis', 120, 1, 2, 'pureNativeIsolateWhey.jpg');
+INSERT INTO `online_nutrition_store`.`item` (`label`, `description`, `price`, `brand`, `current_inventory`, `category_fk`, `discount_fk`, `file_path`) VALUES ('Real Isolate Whey', 'Ultra high protein with less sugars and fat', 35, 'Prozis', 150, 1, NULL, 'realIsolateWhey.jpg');
+INSERT INTO `online_nutrition_store`.`item` (`label`, `description`, `price`, `brand`, `current_inventory`, `category_fk`, `discount_fk`, `file_path`) VALUES ('Ripped Isolate Whey', 'Your casual whey but now in pills to take it easier', 30, 'Prozis', 100, 1, NULL, 'rippedIsolateWhey.jpg');
+/*INSERT INTO `online_nutrition_store`.`item` (`label`, `description`, `price`, `brand`, `current_inventory`, `category_fk`, `discount_fk`, `file_path`) VALUES ('Xtreme Iso XP', 'Extreme whey protein isolate', 40, 'Prozis', 60, 1, 4, 'xtremeIsoXP.jpg');*/

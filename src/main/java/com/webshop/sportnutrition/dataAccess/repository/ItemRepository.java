@@ -10,5 +10,6 @@ import java.util.List;
 @Repository
 public interface ItemRepository extends JpaRepository<ItemEntity, Integer> {
 
-    List<ItemEntity> findByCategoryOrderByLabel(CategoryEntity category);
+    List<ItemEntity> findByCategory(CategoryEntity category);
+    ItemEntity findByItemID(Integer itemID);
 }

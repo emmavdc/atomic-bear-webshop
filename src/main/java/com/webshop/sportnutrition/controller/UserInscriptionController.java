@@ -41,7 +41,6 @@ public class UserInscriptionController extends MasterController {
 
     @Autowired
     public UserInscriptionController(CustomerDataAccess customerDAO) {
-
         this.customerDAO = customerDAO;
     }
 

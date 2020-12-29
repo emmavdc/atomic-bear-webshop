@@ -11,6 +11,14 @@
     margin-bottom: 5%;
 }
 
+.display-none {
+    display: none;
+}
+
+.display-block {
+    display: block;
+}
+
 .next{
     position: relative;
 }

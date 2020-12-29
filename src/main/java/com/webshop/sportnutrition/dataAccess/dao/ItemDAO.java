@@ -28,16 +28,24 @@ public class ItemDAO implements ItemDataAccess {
     }
 
     @Override
-    public ArrayList<Item> findByCategoryOrderByLabel(Integer categoryID) {
+    public ArrayList<Item> getByCategory(Integer categoryID) {
 
+        CategoryEntity categ = new CategoryEntity();
+        categ.setCategoryID(categoryID);
+        return convertListFromDBToArrayList(itemRepository.findByCategory(categ));
+    }
+
+    @Override
+    public Item getByItemID(Integer itemID) {
+        return providerConverter.itemEntityToItemModel(itemRepository.findByItemID(itemID));
+    }
+
+    public ArrayList<Item> convertListFromDBToArrayList(List<ItemEntity> listFromDB) {
         ArrayList<Item> items = new ArrayList<>();
-
-        CategoryEntity cat = new CategoryEntity();
-        cat.setCategoryID(categoryID);
-        for (ItemEntity itemEntity :itemRepository.findByCategoryOrderByLabel(cat)) {
-            items.add(this.providerConverter.itemEntityToItemModel(itemEntity));
+        for (ItemEntity entity : listFromDB) {
+            Item item = providerConverter.itemEntityToItemModel(entity);
+            items.add(item);
         }
-
         return items;
     }
 }

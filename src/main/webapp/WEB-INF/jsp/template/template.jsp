@@ -26,7 +26,6 @@
         <link type="text/css" href= "<spring:url value='/resources/static/css/template.css'/>" rel="Stylesheet" />
         <link type="text/css" href="<spring:url value='/resources/static/css/welcome.css'/>" rel="Stylesheet" />
         <link type="text/css" href="<spring:url value='/resources/static/css/login.css'/>" rel="Stylesheet" />
-        <link type="text/css" href="<spring:url value='/resources/static/css/userProfile.css'/>" rel="Stylesheet" />
         <link type="text/css" href="<spring:url value='/resources/static/css/about.css'/>" rel="Stylesheet" />
 
         <!-- SCRIPT -->
@@ -81,12 +80,6 @@
                         <li class="nav-item">
                             <a class="nav-link navBarElementStyle" href="#"><spring:message code="basket" /></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link navBarElementStyle" href="<spring:url value='/myAccount'/>"><spring:message code="myAccount" /></a>
-                        </li>
-                        <%-- <li class="nav-item">
-                            <a class="nav-link navBarElementStyle" href="#">Langue</a>
-                        </li> --%>
                         <li class="nav-item">
                             <a class="nav-link navBarElementStyle" href="<spring:url value='/aboutUs'/>"><spring:message code="about" /></a>
                         </li>

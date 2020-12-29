@@ -88,7 +88,16 @@
                         </li> --%>
                         <sec:authorize access="isAuthenticated()">
                             <li>
-                                <a class="nav-link navBarElementStyle" href="<spring:url value='/logout'/>"><spring:message code="logout" /></a>
+                                <a class="nav-link navBarElementStyle" href="<spring:url value='/logout'/>">
+                                    <div class="text-center">
+                                        <div>
+                                            <spring:message code="logout" />
+                                        </div>
+                                        <div>
+                                            <small>(${pageContext.request.userPrincipal.name})</small>
+                                        </div>
+                                    </div>
+                                </a>
                             </li>
                         </sec:authorize>
                         <sec:authorize access="!isAuthenticated()">

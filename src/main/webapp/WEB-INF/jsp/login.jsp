@@ -17,6 +17,9 @@
         <form:input path="password" type="password" class="form-control"></form:input>
     </div>
     <br>
+    <div class="form-group">
+        <span class="regErrors"><spring:message code="${badCredential}"/></span>
+    </div>
     <div class="mb-2">
         <form:button class="btn btn-primary">
             <spring:message code="login" />

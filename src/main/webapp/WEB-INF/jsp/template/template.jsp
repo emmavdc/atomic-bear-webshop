@@ -26,7 +26,6 @@
         <link type="text/css" href= "<spring:url value='/resources/static/css/template.css'/>" rel="Stylesheet" />
         <link type="text/css" href="<spring:url value='/resources/static/css/welcome.css'/>" rel="Stylesheet" />
         <link type="text/css" href="<spring:url value='/resources/static/css/login.css'/>" rel="Stylesheet" />
-        <link type="text/css" href="<spring:url value='/resources/static/css/userProfile.css'/>" rel="Stylesheet" />
         <link type="text/css" href="<spring:url value='/resources/static/css/about.css'/>" rel="Stylesheet" />
 
         <!-- SCRIPT -->
@@ -82,12 +81,6 @@
                             <a class="nav-link navBarElementStyle" href="#"><spring:message code="basket" /></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link navBarElementStyle" href="<spring:url value='/myAccount'/>"><spring:message code="myAccount" /></a>
-                        </li>
-                        <%-- <li class="nav-item">
-                            <a class="nav-link navBarElementStyle" href="#">Langue</a>
-                        </li> --%>
-                        <li class="nav-item">
                             <a class="nav-link navBarElementStyle" href="<spring:url value='/aboutUs'/>"><spring:message code="about" /></a>
                         </li>
                         <%-- <li>
@@ -95,7 +88,16 @@
                         </li> --%>
                         <sec:authorize access="isAuthenticated()">
                             <li>
-                                <a class="nav-link navBarElementStyle" href="<spring:url value='/logout'/>"><spring:message code="logout" /></a>
+                                <a class="nav-link navBarElementStyle" href="<spring:url value='/logout'/>">
+                                    <div class="text-center">
+                                        <div>
+                                            <spring:message code="logout" />
+                                        </div>
+                                        <div>
+                                            <small>(${pageContext.request.userPrincipal.name})</small>
+                                        </div>
+                                    </div>
+                                </a>
                             </li>
                         </sec:authorize>
                         <sec:authorize access="!isAuthenticated()">

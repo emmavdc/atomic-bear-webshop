@@ -42,7 +42,8 @@ CREATE TABLE `online_nutrition_store`.`customer` (
   `credentials_non_expired` tinyint DEFAULT 1,
   `enabled` tinyint DEFAULT 1,
   PRIMARY KEY (`customer_id`),
-  UNIQUE KEY (`username`)
+  UNIQUE KEY (`username`),
+  CONSTRAINT chk_phone CHECK(phone_number != '')
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `online_nutrition_store`.`discount` (
@@ -75,7 +76,8 @@ CREATE TABLE `online_nutrition_store`.`order` (
   `reduction` int DEFAULT NULL,
   `customer_fk` int DEFAULT NULL,
   PRIMARY KEY (`order_id`),
-  FOREIGN KEY (`customer_fk`) REFERENCES `customer` (`customer_id`) ON DELETE SET NULL
+  FOREIGN KEY (`customer_fk`) REFERENCES `customer` (`customer_id`) ON DELETE SET NULL,
+  CONSTRAINT chk_date CHECK(delivery_date > order_date)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `online_nutrition_store`.`order_line` (
@@ -151,9 +153,10 @@ INSERT INTO `online_nutrition_store`.`translation` (`label`, `category_fk`, `lan
 INSERT INTO `online_nutrition_store`.`translation` (`label`, `category_fk`, `language_fk`) VALUES ('Accessories', 7, 2);
 
 /* --- Customer --- */
-INSERT INTO `online_nutrition_store`.`customer` (`username`, `password`, `authorities`, `first_name`, `last_name`, `phone_number`, `street_name`, `street_number`, `locality`, `zip_code`, `country`, `account_non_expired`, `account_non_locked`, `credentials_non_expired`, `enabled`) VALUES ('nico6041@hotmail.be', '$2a$10$7AShmOyqEhXmDW1HOOHHMe7TnVsVvqrVgMF/Fgoobd6MZJ4mSbFCi', 'ROLE_USER', 'Nicolas', 'Gatta', '0479837036', /*'1997-11-25',*/ 'rue des bouleaxu', '27', 'Courcelles', 5780, 'Belgique', 1, 1, 1, 1);
-INSERT INTO `online_nutrition_store`.`customer` (`username`, `password`, `authorities`, `first_name`, `last_name`, `phone_number`, `street_name`, `street_number`, `locality`, `zip_code`, `country`, `account_non_expired`, `account_non_locked`, `credentials_non_expired`, `enabled`) VALUES ('dylan.sohet@gmail.com', '$2a$10$7AShmOyqEhXmDW1HOOHHMe7TnVsVvqrVgMF/Fgoobd6MZJ4mSbFCi', 'ROLE_ADMIN', 'Dylan', 'Sohet', '0478070905', /*'2000-11-20',*/ 'Rue du chêne', '50A', 'Belfosse', 9532, 'Belgique', 1, 1, 1, 1);
-INSERT INTO `online_nutrition_store`.`customer` (`username`, `password`, `authorities`, `first_name`, `last_name`, `phone_number`, `street_name`, `street_number`, `locality`, `zip_code`, `country`, `account_non_expired`, `account_non_locked`, `credentials_non_expired`, `enabled`) VALUES ('Michou7854@outlook.be', '$2a$10$7AShmOyqEhXmDW1HOOHHMe7TnVsVvqrVgMF/Fgoobd6MZJ4mSbFCi', 'ROLE_USER', 'Michel', 'Forever', '0471258963', /*'1995-06-11',*/ 'Rue Tonight', '85A', 'Fiesta', 4578, 'Belgique', 1, 1, 1, 1);
+INSERT INTO `online_nutrition_store`.`customer` (`username`, `password`, `authorities`, `first_name`, `last_name`, `phone_number`, `street_name`, `street_number`, `locality`, `zip_code`, `country`, `account_non_expired`, `account_non_locked`, `credentials_non_expired`, `enabled`) VALUES ('nico6041@hotmail.be', '$2a$10$7AShmOyqEhXmDW1HOOHHMe7TnVsVvqrVgMF/Fgoobd6MZJ4mSbFCi', '[ROLE_USER]', 'Nicolas', 'Gatta', '0479837036', /*'1997-11-25',*/ 'rue des bouleaxu', '27', 'Courcelles', 5780, 'Belgique', 1, 1, 1, 1);
+INSERT INTO `online_nutrition_store`.`customer` (`username`, `password`, `authorities`, `first_name`, `last_name`, `phone_number`, `street_name`, `street_number`, `locality`, `zip_code`, `country`, `account_non_expired`, `account_non_locked`, `credentials_non_expired`, `enabled`) VALUES ('dylan.sohet@gmail.com', '$2a$10$7AShmOyqEhXmDW1HOOHHMe7TnVsVvqrVgMF/Fgoobd6MZJ4mSbFCi', '[ROLE_ADMIN]', 'Dylan', 'Sohet', '0478070905', /*'2000-11-20',*/ 'Rue du chêne', '50A', 'Belfosse', 9532, 'Belgique', 1, 1, 1, 1);
+INSERT INTO `online_nutrition_store`.`customer` (`username`, `password`, `authorities`, `first_name`, `last_name`, `phone_number`, `street_name`, `street_number`, `locality`, `zip_code`, `country`, `account_non_expired`, `account_non_locked`, `credentials_non_expired`, `enabled`) VALUES ('Michou7854@outlook.be', '$2a$10$7AShmOyqEhXmDW1HOOHHMe7TnVsVvqrVgMF/Fgoobd6MZJ4mSbFCi', '[ROLE_USER]', 'Michel', 'Forever', '0471258963', /*'1995-06-11',*/ 'Rue Tonight', '85A', 'Fiesta', 4578, 'Belgique', 1, 1, 1, 1);
+INSERT INTO `online_nutrition_store`.`customer` (`username`, `password`, `authorities`, `first_name`, `last_name`, `phone_number`, `street_name`, `street_number`, `locality`, `zip_code`, `country`, `account_non_expired`, `account_non_locked`, `credentials_non_expired`, `enabled`) VALUES ('emma.vdc@domain.be', '$2a$10$q7fL94uRfXuVozBu0JeOmuz/egNFPKT7dKOPslU.5A0UnVQouN59G', '[ROLE_USER]', 'Emma', 'Vandecasteele', '0493222296','Rue Crombouly', '123', 'Thuin', 6530, 'Belgique', 1, 1, 1, 1);
 
 /* --- Discount --- */
 INSERT INTO `online_nutrition_store`.`discount` (`discount`,`label`) VALUES (15, 'Christmas');

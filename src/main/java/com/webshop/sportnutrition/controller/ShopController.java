@@ -7,18 +7,17 @@ import com.webshop.sportnutrition.model.OrderLine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
 
 @Controller
 @RequestMapping(value="/shop")
+@SessionAttributes({ShopController.BASKET})
 public class ShopController extends MasterController {
 
+    protected static final String BASKET="basket";
     private final ItemDataAccess itemDAO;
     private String currentURL;
     private Integer idCateg;
@@ -28,10 +27,13 @@ public class ShopController extends MasterController {
         this.itemDAO = itemDAO;
     }
 
-    /*@ModelAttribute("orderLine")
-    public OrderLine orderLine() {
-        return new OrderLine();
-    }*/
+    @ModelAttribute(BASKET)
+    public ArrayList<OrderLine> addBasketIntoSessionScope() {
+        return new ArrayList<OrderLine>();
+    }
+
+
+
 
     @RequestMapping(value="/proteins", method = RequestMethod.GET)
     public String protein(Model model){
@@ -135,9 +137,14 @@ public class ShopController extends MasterController {
     @RequestMapping(method = RequestMethod.POST)
     public String addItemToCart(Model model,
                               /*@Valid @ModelAttribute(value= Constants.CURRENT_USER) Customer customer*/ /*Ici on veut la order line récupérée*/
-                              @Valid @ModelAttribute OrderLine orderLine ) {
+                              @Valid @ModelAttribute OrderLine orderLine, @ModelAttribute(value = BASKET) ArrayList<OrderLine> basket ) {
+
+        basket.add(orderLine);
+        System.out.println("il y a " + basket.size() + " éléments");
         System.out.println("Page : " + currentURL + " --- Item ID : " + orderLine.getItemFK() +  " -- orderLineQuantity : " + orderLine.getQuantity());
+
         return "redirect:/shop/" + currentURL;
+
         /*Pour l'instant, il renvoit la page courrante mais la page ne doit pas bouger, on doit seulement récupérer les infos de Order Line pour les insérer dans le panier*/
     }
 }

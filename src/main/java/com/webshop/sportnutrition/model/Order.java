@@ -12,7 +12,10 @@ public class Order {
     private Integer orderID;
 
     @NotNull
-    private Date date;
+    private Date orderDate;
+
+    @NotNull
+    private Date deliveryDate;
 
     @NotNull
     private Boolean isPaid;
@@ -29,8 +32,12 @@ public class Order {
         return orderID;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public Date getDeliveryDate() {
+        return deliveryDate;
     }
 
     public Boolean getPaid() {
@@ -51,8 +58,12 @@ public class Order {
         this.orderID = orderID;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public void setDeliveryDate(Date deliveryDate) {
+        this.deliveryDate = deliveryDate;
     }
 
     public void setPaid(Boolean paid) {

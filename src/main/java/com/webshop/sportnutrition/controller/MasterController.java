@@ -19,14 +19,23 @@ public class MasterController {
     @ModelAttribute
     public void everyRequest(Model model) {
 
-        Locale french = Locale.FRENCH;
+        /*Locale french = Locale.FRENCH;
         Locale currentLang = LocaleContextHolder.getLocale();
 
         Language lang = new Language();
         if (currentLang == french)
             lang.setLanguageID(1);
         else
+            lang.setLanguageID(2);*/
+
+        Locale english = Locale.ENGLISH;
+        Locale currentLang = LocaleContextHolder.getLocale();
+
+        Language lang = new Language();
+        if (currentLang == english)
             lang.setLanguageID(2);
+        else
+            lang.setLanguageID(1);
 
         ArrayList<Translation> translations = translationDAO.getCategoryByLanguage(lang);
 

@@ -5,7 +5,7 @@
 <%--@elvariable id="currentUser" type="Customer"--%>
 <form:form id="regForm"
            method="POST"
-           action="/sportNutrition/registration"
+           action="/atomic-bear/registration"
            modelAttribute="currentUser">
 
     <div class="form-group row">

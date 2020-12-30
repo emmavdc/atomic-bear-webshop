@@ -14,9 +14,6 @@ public class OrderLineEntity {
     @Column(name="price")
     private Double price;
 
-    @Column(name="delivery_date")
-    private Date deliveryDate;
-
     @Column(name="quantity")
     private Integer quantity;
 
@@ -36,10 +33,6 @@ public class OrderLineEntity {
 
     public Double getPrice() {
         return price;
-    }
-
-    public Date getDeliveryDate() {
-        return deliveryDate;
     }
 
     public Integer getQuantity() {
@@ -62,10 +55,6 @@ public class OrderLineEntity {
 
     public void setPrice(Double price) {
         this.price = price;
-    }
-
-    public void setDeliveryDate(Date deliveryDate) {
-        this.deliveryDate = deliveryDate;
     }
 
     public void setQuantity(Integer quantity) {

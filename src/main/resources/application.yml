@@ -1,7 +1,7 @@
 server:
   port: 8082
   servlet:
-    contextPath: /sportNutrition
+    contextPath: /atomic-bear
 spring:
   datasource:
     password: _Unbreakable**Pwd_

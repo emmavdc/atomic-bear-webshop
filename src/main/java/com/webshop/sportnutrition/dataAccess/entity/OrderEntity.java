@@ -11,8 +11,11 @@ public class OrderEntity {
     @Column(name="order_id")
     private Integer orderID;
 
-    @Column(name="date")
-    private Date date;
+    @Column(name="order_date")
+    private Date orderDate;
+
+    @Column(name="delivery_date")
+    private Date deliveryDate;
 
     @Column(name="is_paid")
     private Boolean isPaid;
@@ -30,8 +33,12 @@ public class OrderEntity {
         return orderID;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public Date getDeliveryDate() {
+        return deliveryDate;
     }
 
     public Boolean getPaid() {
@@ -52,8 +59,12 @@ public class OrderEntity {
         this.orderID = orderID;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public void setDeliveryDate(Date deliveryDate) {
+        this.deliveryDate = deliveryDate;
     }
 
     public void setPaid(Boolean paid) {

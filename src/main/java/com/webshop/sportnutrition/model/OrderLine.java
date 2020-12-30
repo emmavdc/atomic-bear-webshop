@@ -16,9 +16,6 @@ public class OrderLine {
     private Double price;
 
     @NotNull
-    private Date deliveryDate;
-
-    @NotNull
     @Min(value = 1)
     //@Max(value = item.currentInventory)
     private Integer quantity;
@@ -37,10 +34,6 @@ public class OrderLine {
 
     public Double getPrice() {
         return price;
-    }
-
-    public Date getDeliveryDate() {
-        return deliveryDate;
     }
 
     public Integer getQuantity() {
@@ -63,10 +56,6 @@ public class OrderLine {
 
     public void setPrice(Double price) {
         this.price = price;
-    }
-
-    public void setDeliveryDate(Date deliveryDate) {
-        this.deliveryDate = deliveryDate;
     }
 
     public void setQuantity(Integer quantity) {

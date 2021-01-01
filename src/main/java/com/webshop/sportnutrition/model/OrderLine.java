@@ -23,8 +23,10 @@ public class OrderLine {
     @NotNull
     private Integer orderFK;
 
+    private Integer itemID;
+
     @NotNull
-    private Integer itemFK;
+    private Item item;
 
     /* ------ GETTERS ------ */
 
@@ -44,8 +46,12 @@ public class OrderLine {
         return orderFK;
     }
 
-    public Integer getItemFK() {
-        return itemFK;
+    public Integer getItemID() {
+        return itemID;
+    }
+
+    public Item getItem() {
+        return item;
     }
 
     /* ------ SETTERS ------ */
@@ -66,7 +72,11 @@ public class OrderLine {
         this.orderFK = orderFK;
     }
 
-    public void setItemFK(Integer itemFK) {
-        this.itemFK = itemFK;
+    public void setItemID(Integer itemID) {
+        this.itemID = itemID;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
     }
 }

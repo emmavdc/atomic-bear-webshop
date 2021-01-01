@@ -28,6 +28,7 @@
         <link type="text/css" href="<spring:url value='/resources/static/css/login.css'/>" rel="Stylesheet" />
         <link type="text/css" href="<spring:url value='/resources/static/css/about.css'/>" rel="Stylesheet" />
         <link type="text/css" href="<spring:url value='/resources/static/css/shop.css'/>" rel="Stylesheet" />
+        <link type="text/css" href="<spring:url value='/resources/static/css/cart.css'/>" rel="Stylesheet" />
 
         <!-- SCRIPT -->
         <script type="text/javascript" src="<spring:url value='/script/template.js'/>"></script>
@@ -79,7 +80,7 @@
                     <!-- RIGHT ELEMENTS -->
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link navBarElementStyle" href="#"><spring:message code="basket" /></a>
+                            <a class="nav-link navBarElementStyle" href="<spring:url value='/cart'/>"><spring:message code="basket" /> <span class="badge badge-pill badge-primary">${(cart.size() > 0 ? cart.size() : "")}</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link navBarElementStyle" href="<spring:url value='/aboutUs'/>"><spring:message code="about" /></a>

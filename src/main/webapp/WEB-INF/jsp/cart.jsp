@@ -14,47 +14,49 @@
     </thead>
 
     <% int iItem = 1; %>
-    <c:forEach items="${cart}" var="orderLine">
+    <c:forEach var="orderLine" items = "${sessionScope.cart}">
         <tr>
             <td><%= iItem %></td>
-            <td class="cartImg"><img height="250px" width="250px" src='<spring:url value="/images/products/${orderLine.item.category.categoryID}/${orderLine.item.filePath}"/>' alt="${orderLine.item.filePath}"></td>
-            <td>${orderLine.item.price} €</td>
+            <td class="cartImg"><img height="250px" width="250px" src='<spring:url value="/images/products/${orderLine.value.item.category.categoryID}/${orderLine.value.item.filePath}"/>' alt="${orderLine.value.item.filePath}"></td>
+            <td>${orderLine.value.item.price} €</td>
             <td>
                 <spring:url var="actionValue" value="/cart/minusQuantity"/>
-                <form:form id="minus${orderLine.orderLineID}"
+                <form:form id="minus${orderLine.key}"
                            method="POST"
                            action="${actionValue}"
                            modelAttribute="product">
                     <form:hidden path="orderLineID" value="<%= iItem %>"/>
-                    <form:hidden path="quantity" value="${orderLine.quantity}"/>
+                    <form:hidden path="itemID" value="${orderLine.value.itemID}"/>
+                    <form:hidden path="quantity" value="${orderLine.value.quantity}"/>
                     <form:button><img height="20px" width="20px" src="https://icons.getbootstrap.com/icons/cart-dash.svg" alt="cartDash"></form:button>
                 </form:form>
             </td>
-            <td>${orderLine.quantity}</td>
+            <td>${orderLine.value.quantity}</td>
             <td>
                 <spring:url var="actionValue" value="/cart/plusQuantity"/>
-                <form:form id="plus${orderLine.orderLineID}"
+                <form:form id="plus${orderLine.key}"
                            method="POST"
                            action="${actionValue}"
                            modelAttribute="product">
                     <form:hidden path="orderLineID" value="<%= iItem %>"/>
-                    <form:hidden path="quantity" value="${orderLine.quantity}"/>
+                    <form:hidden path="itemID" value="${orderLine.value.itemID}"/>
+                    <form:hidden path="quantity" value="${orderLine.value.quantity}"/>
                     <form:button><img height="20px" width="20px" src="https://icons.getbootstrap.com/icons/cart-plus.svg" alt="cartPlus"></form:button>
                 </form:form>
             </td>
-            <td>${orderLine.price} €</td>
+            <td>${orderLine.value.price} €</td>
             <td>
                 <spring:url var="actionValue" value="/cart/removeProduct"/>
-                <form:form id="remove${orderLine.orderLineID}"
+                <form:form id="remove${orderLine.key}"
                            method="POST"
                            action="${actionValue}"
                            modelAttribute="product">
                     <form:hidden path="orderLineID" value="<%= iItem %>"/>
+                    <form:hidden path="itemID" value="${orderLine.value.itemID}"/>
                     <form:button><img height="20px" width="20px" src="https://icons.getbootstrap.com/icons/trash.svg" alt="trash"></form:button>
                 </form:form>
             </td>
         </tr>
-
         <% iItem++; %>
     </c:forEach>
 

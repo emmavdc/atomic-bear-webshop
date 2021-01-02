@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Optional;
 
 @Controller
 @RequestMapping(value="/shop")
@@ -29,18 +31,19 @@ public class ShopController extends MasterController {
     }
 
     @ModelAttribute(CART)
-    public ArrayList<OrderLine> addCartIntoSessionScope() {
-        return new ArrayList<OrderLine>();
+    public HashMap<Integer, OrderLine> addCartIntoSessionScope() {
+        return new HashMap();
     }
 
     @RequestMapping(value="/proteins", method = RequestMethod.GET)
     public String protein(Model model){
+        currentURL = "proteins";
+
         model.addAttribute("title", "Protéines");
 
         ArrayList<Item> items = this.itemDAO.getByCategory(1);
-        currentURL = "proteins";
-        //model.addAttribute("urlCateg", "proteins");
         model.addAttribute("items", items);
+
         model.addAttribute("orderLine", new OrderLine());
 
         return "integrated:items";
@@ -48,12 +51,13 @@ public class ShopController extends MasterController {
 
     @RequestMapping(value="/muscledev", method = RequestMethod.GET)
     public String muscleDev(Model model){
-        model.addAttribute("title", "Developpement musculaire");
-
-        ArrayList<Item> items = this.itemDAO.getByCategory(2);
         currentURL = "muscledev";
 
+        model.addAttribute("title", "Développement musculaire");
+
+        ArrayList<Item> items = this.itemDAO.getByCategory(2);
         model.addAttribute("items", items);
+
         model.addAttribute("orderLine", new OrderLine());
 
         return "integrated:items";
@@ -61,12 +65,12 @@ public class ShopController extends MasterController {
 
     @RequestMapping(value="/energy", method = RequestMethod.GET)
     public String energy(Model model){
+        currentURL = "energy";
         model.addAttribute("title", "Energie");
 
         ArrayList<Item> items = this.itemDAO.getByCategory(3);
-        currentURL = "energy";
-
         model.addAttribute("items", items);
+
         model.addAttribute("orderLine", new OrderLine());
 
         return "integrated:items";
@@ -74,12 +78,13 @@ public class ShopController extends MasterController {
 
     @RequestMapping(value="/fatBurners", method = RequestMethod.GET)
     public String fatBurners(Model model){
+        currentURL = "fatBurners";
+
         model.addAttribute("title", "Brûleurs de graisses");
 
         ArrayList<Item> items = this.itemDAO.getByCategory(4);
-        currentURL = "fatBurners";
-
         model.addAttribute("items", items);
+
         model.addAttribute("orderLine", new OrderLine());
 
         return "integrated:items";
@@ -87,12 +92,13 @@ public class ShopController extends MasterController {
 
     @RequestMapping(value="/vitamins", method = RequestMethod.GET)
     public String vitamins(Model model){
+        currentURL = "vitamins";
+
         model.addAttribute("title", "Vitamines");
 
         ArrayList<Item> items = this.itemDAO.getByCategory(5);
-        currentURL = "vitamins";
-
         model.addAttribute("items", items);
+
         model.addAttribute("orderLine", new OrderLine());
 
         return "integrated:items";
@@ -100,12 +106,13 @@ public class ShopController extends MasterController {
 
     @RequestMapping(value="/snackAndDrinks", method = RequestMethod.GET)
     public String snackAndDrinks(Model model){
+        currentURL = "snackAndDrinks";
+
         model.addAttribute("title", "Snacks et boissons");
 
         ArrayList<Item> items = this.itemDAO.getByCategory(6);
-        currentURL = "snackAndDrinks";
-
         model.addAttribute("items", items);
+
         model.addAttribute("orderLine", new OrderLine());
 
         return "integrated:items";
@@ -113,12 +120,13 @@ public class ShopController extends MasterController {
 
     @RequestMapping(value="/accessories", method = RequestMethod.GET)
     public String accessories(Model model){
+        currentURL = "accessories";
+
         model.addAttribute("title", "Accessoires");
 
         ArrayList<Item> items = this.itemDAO.getByCategory(7);
-        currentURL = "accessories";
-
         model.addAttribute("items", items);
+
         model.addAttribute("orderLine", new OrderLine());
 
         return "integrated:items";
@@ -127,7 +135,7 @@ public class ShopController extends MasterController {
     @RequestMapping(method = RequestMethod.POST)
     public String addItemToCart(Model model,
                               @Valid @ModelAttribute OrderLine orderLine,
-                              @ModelAttribute(value = CART) ArrayList<OrderLine> cart) {
+                              @ModelAttribute(value = CART) HashMap<Integer, OrderLine> cart) {
 
         //Item reference
         Item currentItem = itemDAO.getByItemID(orderLine.getItemID());
@@ -136,61 +144,28 @@ public class ShopController extends MasterController {
         Integer itemCurrentInventory = currentItem.getCurrentInventory();
 
         //Product already in the cart
-        OrderLine foundProduct = null;
-        int iProduct = 0;
-        while (iProduct < cart.size() && foundProduct == null) {
-            OrderLine product = cart.get(iProduct);
-            if (product.getItem().getItemID() == currentItem.getItemID())
-                foundProduct = product;
-            iProduct++;
+        Optional<OrderLine> existingOrderLine = cart.values()
+                .stream()
+                .filter(ol->ol.getItem().getItemID() == currentItem.getItemID()).findFirst();
+
+        if (existingOrderLine.isPresent()) {
+
+            setQuantity(existingOrderLine.get(), orderLine.getQuantity() + existingOrderLine.get().getQuantity(), itemCurrentInventory);
+
+            setPrice(existingOrderLine.get(), currentItem, existingOrderLine.get().getPrice());
         }
 
-        if (foundProduct != null) {
-            /*if (completeQuantity > itemCurrentInventory)
-                orderLine.setQuantity(itemCurrentInventory);
-            else
-                orderLine.setQuantity(completeQuantity);*/
-
-            setQuantity(foundProduct, orderLine.getQuantity() + foundProduct.getQuantity(), itemCurrentInventory);
-
-            //Calculate price
-            /*Double price = currentItem.getPrice();
-            if (currentItem.getDiscount() != null)
-                price -= (price / 100) * currentItem.getDiscount().getDiscount();
-
-            orderLine.setPrice(foundProduct.getPrice() + (price * orderLine.getQuantity()));*/
-
-            setPrice(foundProduct, currentItem, foundProduct.getPrice());
-        }
         else {
             orderLine.setItem(currentItem);
-            /*if (orderLine.getQuantity() > itemCurrentInventory)
-                orderLine.setQuantity(itemCurrentInventory);
-            else
-                orderLine.setQuantity(orderLine.getQuantity());*/
 
             setQuantity(orderLine, orderLine.getQuantity(), itemCurrentInventory);
 
-            //Calculate price
-            /*Double price = currentItem.getPrice();
-            if (currentItem.getDiscount() != null)
-                price -= (price / 100) * currentItem.getDiscount().getDiscount();
-
-            orderLine.setPrice(price * orderLine.getQuantity());*/
 
             setPrice(orderLine, currentItem, 0.0);
 
-            cart.add(orderLine);
+            cart.put(orderLine.getItem().getItemID(),orderLine);
         }
 
-
-        //orderLine.setPrice(itemDAO.getByItemID(orderLine.getItemFK()).getPrice() * orderLine.getQuantity());
-        //cart.add(orderLine);
-        /*System.out.println("il y a " + basket.size() + " éléments");
-        System.out.println("Element panier : " + basket.get(0).getQuantity() + " --- prix : " + itemDAO.getByItemID(basket.get(0).getItemFK()).getPrice() * basket.get(0).getQuantity());
-        System.out.println("Page : " + currentURL + " --- Item ID : " + orderLine.getItemFK() +  " -- orderLineQuantity : " + orderLine.getQuantity());*/
-
-        //model.addAttribute("itemAdded", "<div class='alert alert-success' role='alert'><spring:message code='itemAdded'/></div>");
         return "redirect:/shop/" + currentURL;
     }
 

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -40,10 +41,11 @@ public class CartController extends MasterController {
     @RequestMapping(value="/minusQuantity", method = RequestMethod.POST)
     public String minusQuantity(Model model,
                            @Valid @ModelAttribute OrderLine orderLine,
-                           @ModelAttribute(value = "cart") ArrayList<OrderLine> cart) {
+                           @ModelAttribute(value = "cart") HashMap<Integer, OrderLine> cart) {
 
         //System.out.println("OrderLineID : " + orderLine.getOrderLineID() + " --- Cart : " +  cart.get(orderLine.getOrderLineID()-1) + " --- Quantity : " + orderLine.getQuantity());
-        int cartIndex = orderLine.getOrderLineID()-1;
+
+        int cartIndex = orderLine.getItemID();
         if (orderLine.getQuantity() == 1)
             cart.remove(cartIndex);
         else {
@@ -59,9 +61,9 @@ public class CartController extends MasterController {
     @RequestMapping(value="/plusQuantity", method = RequestMethod.POST)
     public String plusQuantity(Model model,
                            @Valid @ModelAttribute OrderLine orderLine,
-                           @ModelAttribute(value = "cart") ArrayList<OrderLine> cart) {
+                           @ModelAttribute(value = "cart") HashMap<Integer, OrderLine> cart) {
 
-        OrderLine currentOrderLine = cart.get(orderLine.getOrderLineID()-1);
+        OrderLine currentOrderLine = cart.get(orderLine.getItemID());
         Integer itemInventory = currentOrderLine.getItem().getCurrentInventory();
         if (currentOrderLine.getQuantity() < itemInventory) {
             currentOrderLine.setQuantity(orderLine.getQuantity() + 1);
@@ -85,9 +87,9 @@ public class CartController extends MasterController {
     @RequestMapping(value="/removeProduct", method = RequestMethod.POST)
     public String removeProduct(Model model,
                                 @Valid @ModelAttribute OrderLine orderLine,
-                                @ModelAttribute(value = "cart") ArrayList<OrderLine> cart) {
+                                @ModelAttribute(value = "cart") HashMap<Integer, OrderLine> cart) {
 
-        cart.remove(orderLine.getOrderLineID()-1);
+        cart.remove(orderLine.getItemID());
 
         return "redirect:/cart";
     }
@@ -95,7 +97,7 @@ public class CartController extends MasterController {
     @RequestMapping(value="/placeOrder", method = RequestMethod.POST)
     public String placeOrder(Model model,
                                 @Valid @ModelAttribute OrderLine orderLine,
-                                @ModelAttribute(value = "cart") ArrayList<OrderLine> cart) {
+                                @ModelAttribute(value = "cart") HashMap<Integer, OrderLine> cart) {
 
         return "redirect:/cart";
     }

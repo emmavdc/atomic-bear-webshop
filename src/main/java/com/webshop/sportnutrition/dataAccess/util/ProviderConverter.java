@@ -9,19 +9,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProviderConverter {
 
-    private final Mapper mapper = new DozerBeanMapper();
+    private Mapper mapper;
 
     /* ------------ Customer ------------ */
 
     public CustomerEntity customerModelToCustomerEntity(Customer customer) {
-        CustomerEntity customerEntity = mapper.map(customer, CustomerEntity.class);
+        CustomerEntity customerEntity = getMapper().map(customer, CustomerEntity.class);
         CryptPassword cryptPassword = new CryptPassword();
         customerEntity.setPassword(cryptPassword.crypt(customer.getPassword()));
         return customerEntity;
     }
 
     public Customer customerEntityToCustomerModel(CustomerEntity customerEntity) {
-        Customer customer = mapper.map(customerEntity, Customer.class);
+        Customer customer = getMapper().map(customerEntity, Customer.class);
         customer.setAuthorities(customerEntity.getAuthorities());
         customer.setAccountNonExpired(customerEntity.getAccountNonExpired());
         customer.setAccountNonLocked(customerEntity.getAccountNonLocked());
@@ -33,70 +33,75 @@ public class ProviderConverter {
     /* ------------ Category ------------ */
 
     public CategoryEntity categoryModelToCategoryEntity(Category category) {
-        return mapper.map(category, CategoryEntity.class);
+        return getMapper().map(category, CategoryEntity.class);
     }
 
     public Category categoryEntityToCategoryModel(CategoryEntity categoryEntity) {
-        return mapper.map(categoryEntity, Category.class);
+        return getMapper().map(categoryEntity, Category.class);
     }
 
     /* ------------ Language ------------ */
 
     public LanguageEntity languageModelToLanguageEntity(Language language) {
-        return mapper.map(language, LanguageEntity.class);
+        return getMapper().map(language, LanguageEntity.class);
     }
 
     public Language languageEntityToLanguageModel(LanguageEntity languageEntity) {
-        return mapper.map(languageEntity, Language.class);
+        return getMapper().map(languageEntity, Language.class);
     }
 
     /* ------------ Translation ------------ */
 
     public TranslationEntity translationModelToTranslationEntity(Translation translation) {
-        return mapper.map(translation, TranslationEntity.class);
+        return getMapper().map(translation, TranslationEntity.class);
     }
 
     public Translation translationEntityToTranslationModel(TranslationEntity translationEntity) {
-        return mapper.map(translationEntity, Translation.class);
+        return getMapper().map(translationEntity, Translation.class);
     }
 
     /* ------------ Discount ------------ */
 
     public DiscountEntity discountModelToDiscountEntity(Discount discount) {
-        return mapper.map(discount, DiscountEntity.class);
+        return getMapper().map(discount, DiscountEntity.class);
     }
 
     public Discount discountEntityToDiscountModel(DiscountEntity discountEntity) {
-        return mapper.map(discountEntity, Discount.class);
+        return getMapper().map(discountEntity, Discount.class);
     }
 
     /* ------------ Item ------------ */
 
     public ItemEntity itemModelToItemEntity(Item item) {
-        return mapper.map(item, ItemEntity.class);
+        return getMapper().map(item, ItemEntity.class);
     }
 
     public Item itemEntityToItemModel(ItemEntity itemEntity) {
-        return mapper.map(itemEntity, Item.class);
+        return getMapper().map(itemEntity, Item.class);
     }
 
     /* ------------ Order ------------ */
 
     public OrderEntity orderModelToOrderEntity(Order order) {
-        return mapper.map(order, OrderEntity.class);
+        return getMapper().map(order, OrderEntity.class);
     }
 
     public Order orderEntityToOrderModel(OrderEntity orderEntity) {
-        return mapper.map(orderEntity, Order.class);
+        return getMapper().map(orderEntity, Order.class);
     }
 
     /* ------------ OrderLine ------------ */
 
     public OrderLineEntity orderLineModelToOrderLineEntity(OrderLine orderLine) {
-        return mapper.map(orderLine, OrderLineEntity.class);
+        return getMapper().map(orderLine, OrderLineEntity.class);
     }
 
     public OrderLine orderLineEntityToOrderLineModel(OrderLineEntity orderLineEntity) {
-        return mapper.map(orderLineEntity, OrderLine.class);
+        return getMapper().map(orderLineEntity, OrderLine.class);
+    }
+
+    private Mapper getMapper() {
+        if (mapper == null ) mapper = new DozerBeanMapper();
+        return mapper;
     }
 }

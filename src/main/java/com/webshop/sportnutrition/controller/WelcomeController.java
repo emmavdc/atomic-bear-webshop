@@ -18,7 +18,6 @@ public class WelcomeController extends MasterController {
 
     private CustomerDataAccess customerDAO;
 
-
     @Autowired
     public WelcomeController(CustomerDataAccess customerDAO) {
         this.customerDAO = customerDAO;

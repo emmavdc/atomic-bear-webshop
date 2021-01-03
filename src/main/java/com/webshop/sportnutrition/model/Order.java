@@ -2,7 +2,9 @@ package com.webshop.sportnutrition.model;
 
 import com.sun.istack.NotNull;
 
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Min;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Order {
@@ -12,7 +14,10 @@ public class Order {
     private Integer orderID;
 
     @NotNull
-    private Date date;
+    private Date orderDate;
+
+    @NotNull
+    private Date deliveryDate;
 
     @NotNull
     private Boolean isPaid;
@@ -21,7 +26,9 @@ public class Order {
     private Integer reduction;
 
     @NotNull
-    private String customerFK;
+    private Customer customer;
+
+    private ArrayList<OrderLine> orderLines;
 
     /* ------ GETTERS ------ */
 
@@ -29,8 +36,12 @@ public class Order {
         return orderID;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public Date getDeliveryDate() {
+        return deliveryDate;
     }
 
     public Boolean getPaid() {
@@ -41,9 +52,11 @@ public class Order {
         return reduction;
     }
 
-    public String getCustomerFK() {
-        return customerFK;
+    public Customer getCustomer() {
+        return customer;
     }
+
+    public ArrayList<OrderLine> getOrderLines() { return orderLines; }
 
     /* ------ SETTERS ------ */
 
@@ -51,8 +64,12 @@ public class Order {
         this.orderID = orderID;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public void setDeliveryDate(Date deliveryDate) {
+        this.deliveryDate = deliveryDate;
     }
 
     public void setPaid(Boolean paid) {
@@ -63,7 +80,11 @@ public class Order {
         this.reduction = reduction;
     }
 
-    public void setCustomerFK(String customerFK) {
-        this.customerFK = customerFK;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public void setOrderLines(ArrayList<OrderLine> orderLines) {
+        this.orderLines = orderLines;
     }
 }

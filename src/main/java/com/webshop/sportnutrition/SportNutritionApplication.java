@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class SportNutritionApplication {
 
     public static void main(String[] args) {
+
         SpringApplication.run(SportNutritionApplication.class, args);
     }
 

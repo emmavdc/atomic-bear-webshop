@@ -70,7 +70,7 @@ public class UserInscriptionController extends MasterController {
         if(customerBD != null)
             model.addAttribute("usernameAlreadyExist", "usernameAlreadyExist");
 
-        if (!errors.hasErrors() && !model.containsAttribute("pwdDontMatch") && !model.containsAttribute("usernameAlreadyExist")/* && !model.containsAttribute("birthDateError")*/) {
+        if (!errors.hasErrors() && !model.containsAttribute("pwdDontMatch") && !model.containsAttribute("usernameAlreadyExist")) {
 
             //Remplissage ici car les valeurs de UserDetails ne se mappent pas correctement
             // Et les valeurs par défaut de la BD ne s'appliquent pas

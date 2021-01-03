@@ -1,0 +1,12 @@
+#cartTable {
+    width: 1300px;
+    margin: 5% auto;
+}
+
+#cartTable th:not(.cartImg), #cartTable td:not(.cartImg) {
+    text-align: center;
+}
+
+.placeOrder {
+    margin: 5% auto;
+}

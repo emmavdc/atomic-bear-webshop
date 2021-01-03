@@ -2,6 +2,8 @@ package com.webshop.sportnutrition.model;
 
 import com.sun.istack.NotNull;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Min;
 import java.util.Date;
 
@@ -16,9 +18,6 @@ public class OrderLine {
     private Double price;
 
     @NotNull
-    private Date deliveryDate;
-
-    @NotNull
     @Min(value = 1)
     //@Max(value = item.currentInventory)
     private Integer quantity;
@@ -26,8 +25,12 @@ public class OrderLine {
     @NotNull
     private Integer orderFK;
 
+    private Integer itemID;
+
     @NotNull
-    private Integer itemFK;
+    private Item item;
+
+    private Order order;
 
     /* ------ GETTERS ------ */
 
@@ -39,10 +42,6 @@ public class OrderLine {
         return price;
     }
 
-    public Date getDeliveryDate() {
-        return deliveryDate;
-    }
-
     public Integer getQuantity() {
         return quantity;
     }
@@ -51,8 +50,12 @@ public class OrderLine {
         return orderFK;
     }
 
-    public Integer getItemFK() {
-        return itemFK;
+    public Integer getItemID() {
+        return itemID;
+    }
+
+    public Item getItem() {
+        return item;
     }
 
     /* ------ SETTERS ------ */
@@ -65,10 +68,6 @@ public class OrderLine {
         this.price = price;
     }
 
-    public void setDeliveryDate(Date deliveryDate) {
-        this.deliveryDate = deliveryDate;
-    }
-
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
@@ -77,7 +76,11 @@ public class OrderLine {
         this.orderFK = orderFK;
     }
 
-    public void setItemFK(Integer itemFK) {
-        this.itemFK = itemFK;
+    public void setItemID(Integer itemID) {
+        this.itemID = itemID;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
     }
 }

@@ -55,6 +55,7 @@ public class Item {
     }
 
     public Double getPrice() {
+        //return Math.round(price * 100.0) / 100.0;
         return price;
     }
 

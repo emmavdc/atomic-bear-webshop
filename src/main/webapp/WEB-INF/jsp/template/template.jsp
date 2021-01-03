@@ -27,6 +27,8 @@
         <link type="text/css" href="<spring:url value='/resources/static/css/welcome.css'/>" rel="Stylesheet" />
         <link type="text/css" href="<spring:url value='/resources/static/css/login.css'/>" rel="Stylesheet" />
         <link type="text/css" href="<spring:url value='/resources/static/css/about.css'/>" rel="Stylesheet" />
+        <link type="text/css" href="<spring:url value='/resources/static/css/shop.css'/>" rel="Stylesheet" />
+        <link type="text/css" href="<spring:url value='/resources/static/css/cart.css'/>" rel="Stylesheet" />
 
         <!-- SCRIPT -->
         <script type="text/javascript" src="<spring:url value='/script/template.js'/>"></script>
@@ -57,12 +59,12 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="<spring:url value='/shop/proteins'/>">${proteins}</a>
                                 <a class="dropdown-item" href="<spring:url value='/shop/muscledev'/>">${muscleDev}</a>
-                                <a class="dropdown-item" href="#">${energy}</a>
-                                <a class="dropdown-item" href="#">${fatBurners}</a>
-                                <a class="dropdown-item" href="#">${vitamins}</a>
-                                <a class="dropdown-item" href="#">${snackAndDrinks}</a>
+                                <a class="dropdown-item" href="<spring:url value='/shop/energy'/>">${energy}</a>
+                                <a class="dropdown-item" href="<spring:url value='/shop/fatBurners'/>">${fatBurners}</a>
+                                <a class="dropdown-item" href="<spring:url value='/shop/vitamins'/>">${vitamins}</a>
+                                <a class="dropdown-item" href="<spring:url value='/shop/snackAndDrinks'/>">${snackAndDrinks}</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">${accessories}</a>
+                                <a class="dropdown-item" href="<spring:url value='/shop/accessories'/>">${accessories}</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -70,7 +72,7 @@
                                 <spring:message code="language" />
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="${localeFr}"><spring:message code="frenchLanguage" /> <img alt="fr" src='<spring:url value="/images/lang/localeFr.png"/>' style="height: 20px; width: 25px" /></a>
+                                <a class="dropdown-item" href="${localeFr}"><spring:message code="frenchLanguage" /> <img alt="fr" src='<spring:url value="/images/lang/localeFr.png"/>' style="height: 18px; width: 25px" /></a>
                                 <a class="dropdown-item" href="${localeEn}"><spring:message code="englishLanguage" /> <img alt="fr" src='<spring:url value="/images/lang/localeEn.png"/>' style="height: 20px; width: 20px" /></a>
                             </div>
                         </li>
@@ -78,7 +80,7 @@
                     <!-- RIGHT ELEMENTS -->
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link navBarElementStyle" href="#"><spring:message code="basket" /></a>
+                            <a class="nav-link navBarElementStyle" href="<spring:url value='/cart'/>"><spring:message code="basket" /> <span class="badge badge-pill badge-primary">${(cart.size() > 0 ? cart.size() : "")}</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link navBarElementStyle" href="<spring:url value='/aboutUs'/>"><spring:message code="about" /></a>

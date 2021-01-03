@@ -2,6 +2,8 @@ package com.webshop.sportnutrition.model;
 
 import com.sun.istack.NotNull;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Min;
 import java.util.Date;
 
@@ -27,6 +29,8 @@ public class OrderLine {
 
     @NotNull
     private Item item;
+
+    private Order order;
 
     /* ------ GETTERS ------ */
 

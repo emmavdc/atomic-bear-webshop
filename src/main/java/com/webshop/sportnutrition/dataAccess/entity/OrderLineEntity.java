@@ -1,71 +1,31 @@
 package com.webshop.sportnutrition.dataAccess.entity;
 
+import com.webshop.sportnutrition.model.OrderLine;
+
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
-@Table(name="order_line")
+@Table(name="`order_line`")
 public class OrderLineEntity {
 
     @Id
-    @Column(name="order_line_id")
-    private Integer orderLineID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="order_line_id", unique=true, nullable = false)
+    private Integer orderID;
 
     @Column(name="price")
-    private Double price;
+    private double  price;
 
     @Column(name="quantity")
     private Integer quantity;
 
-    @JoinColumn(name="order_fk", referencedColumnName = "order_id")
-    @ManyToOne
-    private OrderEntity order;
 
-    @JoinColumn(name="item_fk", referencedColumnName = "item_id")
-    @OneToOne
+    @JoinColumn(name="item_fk", referencedColumnName = "item_id", insertable = false)
+    @ManyToOne
     private ItemEntity item;
 
-    /* ------ GETTERS ------ */
-
-    public Integer getOrderLineID() {
-        return orderLineID;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public OrderEntity getOrder() {
-        return order;
-    }
-
-    public ItemEntity getItem() {
-        return item;
-    }
-
-    /* ------ SETTERS ------ */
-
-    public void setOrderLineID(Integer orderLineID) {
-        this.orderLineID = orderLineID;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public void setOrder(OrderEntity order) {
-        this.order = order;
-    }
-
-    public void setItem(ItemEntity item) {
-        this.item = item;
-    }
+    @JoinColumn(name="order_fk", referencedColumnName = "order_id")
+    @OneToOne
+    private OrderEntity order;
 }

@@ -1,6 +1,8 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <%@ include file ="include/importTags.jsp" %>
 
+<div class="row">
+    <div class="column">
 <table class="table" id="cartTable">
     <thead class="thead-dark">
         <tr>
@@ -61,5 +63,29 @@
     </c:forEach>
 
 </table>
+    </div>
+</div>
+<sec:authorize access="isAuthenticated()">
+<div class="row">
+    <div class="column">
+    <a href="<spring:url value='/cart/order'/>">
+        <c:choose>
+            <c:when test="empty ${sessionScope.cart}">
+                <button disabled class="btn btn-primary placeOrder"><spring:message code="placeOrder"/></button>
+            </c:when>
+            <c:otherwise>
+                <button class="btn btn-primary placeOrder"><spring:message code="placeOrder"/></button>
+            </c:otherwise>
+        </c:choose>
+    </a>
+    </div>
+</div>
+</sec:authorize>
+<sec:authorize access="!isAuthenticated()">
+    <div class="row">
+        <div class="column">
+            <spring:message code="loginToOrder" />
+        </div>
+    </div>
+</sec:authorize>
 
-<a href="<spring:url value='/cart/placeOrder'/>"><button class="btn btn-primary placeOrder"><spring:message code="placeOrder"/></button></a>

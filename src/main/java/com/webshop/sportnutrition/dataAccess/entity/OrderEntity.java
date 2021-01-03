@@ -1,14 +1,21 @@
 package com.webshop.sportnutrition.dataAccess.entity;
 
+import com.webshop.sportnutrition.model.OrderLine;
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 @Entity
-@Table(name="order")
+@Table(name="`order`")
 public class OrderEntity {
 
     @Id
-    @Column(name="order_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="order_id", unique=true, nullable = false)
     private Integer orderID;
 
     @Column(name="order_date")
@@ -26,6 +33,10 @@ public class OrderEntity {
     @JoinColumn(name="customer_fk", referencedColumnName = "customer_id")
     @ManyToOne
     private CustomerEntity customer;
+
+    @OneToMany
+    private List<OrderLineEntity> orderLines;
+
 
     /* ------ GETTERS ------ */
 

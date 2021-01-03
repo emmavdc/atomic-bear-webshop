@@ -1,8 +1,12 @@
 package com.webshop.sportnutrition.controller;
 
+import com.webshop.sportnutrition.Constants;
 import com.webshop.sportnutrition.dataAccess.dao.ItemDataAccess;
+import com.webshop.sportnutrition.model.Customer;
 import com.webshop.sportnutrition.model.Item;
+import com.webshop.sportnutrition.model.Order;
 import com.webshop.sportnutrition.model.OrderLine;
+import com.webshop.sportnutrition.service.OrderServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,9 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(value="/cart")
@@ -22,10 +25,18 @@ import java.util.List;
 public class CartController extends MasterController {
 
     private final ItemDataAccess itemDAO;
+    private final OrderServiceInterface orderService;
+
+    @ModelAttribute(Constants.CURRENT_ORDER)
+    public Order order() {
+        return new Order();
+    }
+
 
     @Autowired
-    public CartController(ItemDataAccess itemDAO) {
+    public CartController(ItemDataAccess itemDAO, OrderServiceInterface orderService) {
         this.itemDAO = itemDAO;
+        this.orderService = orderService;
     }
 
     @RequestMapping(method = RequestMethod.GET)
@@ -36,6 +47,26 @@ public class CartController extends MasterController {
         model.addAttribute("removeProduct", new OrderLine());
         model.addAttribute("product", new OrderLine());
         return "integrated:cart";
+    }
+
+    @RequestMapping(value="order", method = RequestMethod.GET)
+    public String ConfirmOrder(Model model){
+        model.addAttribute("title", "Confirmation commande");
+        return "integrated:order";
+    }
+
+    @RequestMapping(value="order", method = RequestMethod.POST)
+    public String PassOrder(Model model, @ModelAttribute Order order,
+                            @ModelAttribute(value = "cart") HashMap<Integer, OrderLine> cart) {
+        model.addAttribute("title", "Confirmation commande");
+
+        order.setOrderLines(cart.values().stream().collect(Collectors.toCollection((ArrayList<OrderLine>::new))));
+
+        ArrayList<String> returnCodes = orderService.SaveOrder(order);
+
+        model.addAttribute("returnCodesSaveOrder", returnCodes);
+
+        return "integrated:order";
     }
 
     @RequestMapping(value="/minusQuantity", method = RequestMethod.POST)

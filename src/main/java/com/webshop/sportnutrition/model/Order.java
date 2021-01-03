@@ -2,7 +2,9 @@ package com.webshop.sportnutrition.model;
 
 import com.sun.istack.NotNull;
 
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Min;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Order {
@@ -24,7 +26,9 @@ public class Order {
     private Integer reduction;
 
     @NotNull
-    private String customerFK;
+    private Customer customer;
+
+    private ArrayList<OrderLine> orderLines;
 
     /* ------ GETTERS ------ */
 
@@ -48,9 +52,11 @@ public class Order {
         return reduction;
     }
 
-    public String getCustomerFK() {
-        return customerFK;
+    public Customer getCustomer() {
+        return customer;
     }
+
+    public ArrayList<OrderLine> getOrderLines() { return orderLines; }
 
     /* ------ SETTERS ------ */
 
@@ -74,7 +80,11 @@ public class Order {
         this.reduction = reduction;
     }
 
-    public void setCustomerFK(String customerFK) {
-        this.customerFK = customerFK;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public void setOrderLines(ArrayList<OrderLine> orderLines) {
+        this.orderLines = orderLines;
     }
 }

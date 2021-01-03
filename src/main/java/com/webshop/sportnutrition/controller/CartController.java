@@ -52,6 +52,7 @@ public class CartController extends MasterController {
     @RequestMapping(value="order", method = RequestMethod.GET)
     public String ConfirmOrder(Model model){
         model.addAttribute("title", "Confirmation commande");
+        model.addAttribute("isOrderConfirmed", false);
         return "integrated:order";
     }
 
@@ -59,11 +60,17 @@ public class CartController extends MasterController {
     public String PassOrder(Model model, @ModelAttribute Order order,
                             @ModelAttribute(value = "cart") HashMap<Integer, OrderLine> cart) {
         model.addAttribute("title", "Confirmation commande");
+        Boolean isOrderConfirmed = false;
 
         order.setOrderLines(cart.values().stream().collect(Collectors.toCollection((ArrayList<OrderLine>::new))));
 
         ArrayList<String> returnCodes = orderService.SaveOrder(order);
 
+        if (returnCodes.get(0) == "rcOrder01") {
+            isOrderConfirmed = true;
+            cart.clear();
+        }
+        model.addAttribute("isOrderConfirmed", isOrderConfirmed);
         model.addAttribute("returnCodesSaveOrder", returnCodes);
 
         return "integrated:order";

@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -35,7 +37,9 @@ public class OrderService implements OrderServiceInterface{
             Customer customer = (Customer) authentication.getPrincipal();
             order.setCustomer(customer);
             order.setOrderDate(new Date());
-            order.setDeliveryDate(new Date());
+            LocalDateTime localDateTime = LocalDateTime.now();
+            Date date = Date.from(localDateTime.plusDays(5).atZone(ZoneId.systemDefault()).toInstant());
+            order.setDeliveryDate(date);
             order.setReduction(0);
             order.setPaid(false);
 

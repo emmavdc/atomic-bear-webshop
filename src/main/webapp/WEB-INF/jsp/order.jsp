@@ -19,10 +19,7 @@
 
         </form:form>
     </c:if>
-
-    <c:if test="${isOrderConfirmed}">
-        <c:forEach items="${returnCodesSaveOrder}" var="returnCode">
-            <spring:message code="${returnCode}"/>
-        </c:forEach>
-    </c:if>
+    <c:forEach items="${returnCodesSaveOrder}" var="returnCode">
+        <spring:message code="${returnCode}"/>
+    </c:forEach>
 </div>

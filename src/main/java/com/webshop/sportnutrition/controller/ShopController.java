@@ -1,6 +1,7 @@
 package com.webshop.sportnutrition.controller;
 
 import com.webshop.sportnutrition.Constants;
+import com.webshop.sportnutrition.dataAccess.dao.ItemDAO;
 import com.webshop.sportnutrition.dataAccess.dao.ItemDataAccess;
 import com.webshop.sportnutrition.model.Item;
 import com.webshop.sportnutrition.model.Order;
@@ -26,7 +27,7 @@ public class ShopController extends MasterController {
     private String currentURL;
 
     @Autowired
-    public ShopController(ItemDataAccess itemDAO) {
+    public ShopController(ItemDAO itemDAO) {
         this.itemDAO = itemDAO;
     }
 

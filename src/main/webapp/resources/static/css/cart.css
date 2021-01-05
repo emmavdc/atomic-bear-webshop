@@ -3,10 +3,26 @@
     margin: 5% auto;
 }
 
-#cartTable th:not(.cartImg), #cartTable td:not(.cartImg) {
+#cartTable th:not(.cartImg), #cartTable td:not(.cartImg), .tableOrderResume th:not(.cartImg), .tableOrderResume td:not(.cartImg), .orderResume {
     text-align: center;
 }
 
+.confirmOrder, .orderResume {
+    margin: 5% auto;
+}
+
 .placeOrder {
+    margin-left: 45%;
+}
+
+#orderConfirmed {
+    width: 500px;
+    border: 1px solid #1c2d3f;
+    text-align: center;
+    margin: 5% auto;
+}
+
+.tableOrderResume {
+    width: 1000px;
     margin: 5% auto;
 }

@@ -8,12 +8,14 @@ import com.webshop.sportnutrition.model.Order;
 import com.webshop.sportnutrition.model.OrderLine;
 import com.webshop.sportnutrition.service.OrderServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.security.core.Authentication;
 
 import javax.validation.Valid;
 import java.util.*;
@@ -53,6 +55,9 @@ public class CartController extends MasterController {
     public String ConfirmOrder(Model model){
         model.addAttribute("title", "Confirmation commande");
         model.addAttribute("isOrderConfirmed", false);
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Customer currentUser = (Customer) principal;
+        model.addAttribute("currentUser", currentUser);
         return "integrated:order";
     }
 
@@ -62,11 +67,12 @@ public class CartController extends MasterController {
         model.addAttribute("title", "Confirmation commande");
         Boolean isOrderConfirmed = false;
 
-        order.setOrderLines(cart.values().stream().collect(Collectors.toCollection((ArrayList<OrderLine>::new))));
+        //order.setOrderLines(cart.values().stream().collect(Collectors.toCollection((ArrayList<OrderLine>::new))));
+        order.setOrderLines(new ArrayList<>(cart.values()));
 
         ArrayList<String> returnCodes = orderService.SaveOrder(order);
 
-        if (returnCodes.get(0) == "rcOrder01") {
+        if (returnCodes.get(0).equals("rcOrder01")) {
             isOrderConfirmed = true;
             cart.clear();
         }

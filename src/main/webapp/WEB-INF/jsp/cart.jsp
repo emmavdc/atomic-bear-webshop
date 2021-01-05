@@ -70,7 +70,7 @@
     <div class="column">
     <a href="<spring:url value='/cart/order'/>">
         <c:choose>
-            <c:when test="empty ${sessionScope.cart}">
+            <c:when test="${empty sessionScope.cart}">
                 <button disabled class="btn btn-primary placeOrder"><spring:message code="placeOrder"/></button>
             </c:when>
             <c:otherwise>

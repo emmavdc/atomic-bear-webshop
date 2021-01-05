@@ -6,13 +6,13 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Table(name="`order_line`")
+@Table(name="order_line")
 public class OrderLineEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="order_line_id", unique=true, nullable = false)
-    private Integer orderID;
+    @Column(name="order_line_id")
+    private Integer orderLineID;
 
     @Column(name="price")
     private double  price;
@@ -21,11 +21,31 @@ public class OrderLineEntity {
     private Integer quantity;
 
 
-    @JoinColumn(name="item_fk", referencedColumnName = "item_id", insertable = false)
+    @JoinColumn(name="item_fk", referencedColumnName = "item_id")
     @ManyToOne
     private ItemEntity item;
 
-    @JoinColumn(name="order_fk", referencedColumnName = "order_id")
-    @OneToOne
-    private OrderEntity order;
+    public Integer getOrderLineID() {
+        return orderLineID;
+    }
+
+    public void setOrderLineID(Integer orderLineID) {
+        this.orderLineID = orderLineID;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public ItemEntity getItem() {
+        return item;
+    }
+
+    public void setItem(ItemEntity item) {
+        this.item = item;
+    }
 }

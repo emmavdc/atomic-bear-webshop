@@ -1,6 +1,7 @@
 package com.webshop.sportnutrition.controller;
 
 import com.webshop.sportnutrition.Constants;
+import com.webshop.sportnutrition.dataAccess.dao.ItemDAO;
 import com.webshop.sportnutrition.dataAccess.dao.ItemDataAccess;
 import com.webshop.sportnutrition.model.Customer;
 import com.webshop.sportnutrition.model.Item;
@@ -36,7 +37,7 @@ public class CartController extends MasterController {
 
 
     @Autowired
-    public CartController(ItemDataAccess itemDAO, OrderServiceInterface orderService) {
+    public CartController(ItemDAO itemDAO, OrderServiceInterface orderService) {
         this.itemDAO = itemDAO;
         this.orderService = orderService;
     }

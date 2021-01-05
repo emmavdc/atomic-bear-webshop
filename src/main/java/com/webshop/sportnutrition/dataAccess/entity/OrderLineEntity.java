@@ -48,4 +48,12 @@ public class OrderLineEntity {
     public void setItem(ItemEntity item) {
         this.item = item;
     }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
 }

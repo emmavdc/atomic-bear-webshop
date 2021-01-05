@@ -38,7 +38,9 @@ public class OrderService implements OrderServiceInterface{
             order.setDeliveryDate(new Date());
             order.setReduction(0);
             order.setPaid(false);
-
+            for (OrderLine ol : order.getOrderLines()) {
+                ol.setPrice(ol.getItem().getPrice()* ol.getQuantity());
+            }
 
             this.orderDataAccess.save(order);
 

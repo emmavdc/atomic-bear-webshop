@@ -15,7 +15,7 @@ public class OrderEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="order_id", unique=true, nullable = false)
+    @Column(name="order_id")
     private Integer orderID;
 
     @Column(name="order_date")
@@ -34,8 +34,12 @@ public class OrderEntity {
     @ManyToOne
     private CustomerEntity customer;
 
-    @OneToMany
-    private List<OrderLineEntity> orderLines;
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JoinColumn(name="order_fk")
+    private List<OrderLineEntity> orderLines = new ArrayList<>();
 
 
     /* ------ GETTERS ------ */
@@ -64,6 +68,11 @@ public class OrderEntity {
         return customer;
     }
 
+    public List<OrderLineEntity> getOrderLines() {
+        return orderLines;
+    }
+
+
     /* ------ SETTERS ------ */
 
     public void setOrderID(Integer orderID) {
@@ -88,5 +97,9 @@ public class OrderEntity {
 
     public void setCustomer(CustomerEntity customer) {
         this.customer = customer;
+    }
+
+    public void setOrderLines(ArrayList<OrderLineEntity> orderLines) {
+        this.orderLines = orderLines;
     }
 }

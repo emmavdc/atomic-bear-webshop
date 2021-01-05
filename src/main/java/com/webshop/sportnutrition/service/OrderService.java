@@ -3,6 +3,7 @@ package com.webshop.sportnutrition.service;
 import com.webshop.sportnutrition.dataAccess.dao.OrderDataAccess;
 import com.webshop.sportnutrition.model.Customer;
 import com.webshop.sportnutrition.model.Order;
+import com.webshop.sportnutrition.model.OrderLine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
@@ -37,6 +38,9 @@ public class OrderService implements OrderServiceInterface{
             order.setDeliveryDate(new Date());
             order.setReduction(0);
             order.setPaid(false);
+            for (OrderLine ol : order.getOrderLines()) {
+                ol.setPrice(ol.getItem().getPrice()* ol.getQuantity());
+            }
 
             this.orderDataAccess.save(order);
 

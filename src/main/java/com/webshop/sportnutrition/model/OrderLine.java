@@ -83,4 +83,12 @@ public class OrderLine {
     public void setItem(Item item) {
         this.item = item;
     }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 }

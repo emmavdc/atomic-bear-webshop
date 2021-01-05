@@ -19,9 +19,11 @@ public class WelcomeController extends MasterController {
     private CustomerDataAccess customerDAO;
 
     @Autowired
-    public WelcomeController(CustomerDataAccess customerDAO) {
+    public WelcomeController(CustomerDAO customerDAO) {
         this.customerDAO = customerDAO;
     }
+
+
 
     @RequestMapping(method = RequestMethod.GET)
     public String home(Model model){

@@ -77,6 +77,7 @@ public class UserInscriptionController extends MasterController {
             customer.setEnabled(true);
             customer.setAuthorities("ROLE_USER");
             customer.setNbFidelityPoints(0);
+            if(customer.getPhoneNumber().equals("")) customer.setPhoneNumber(null);
 
             customerDAO.save(customer);
             //return "redirect:/myAccount";

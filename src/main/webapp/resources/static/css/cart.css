@@ -7,16 +7,19 @@
     text-align: center;
 }
 
-.confirmOrder, .orderResume {
+.orderResume {
     margin: 5% auto;
+}
+
+.confirmOrder {
+    margin: 0 auto;
 }
 
 .placeOrder {
     margin-left: 45%;
 }
 
-#orderConfirmed {
-    width: 500px;
+#orderStatus {
     border: 1px solid #1c2d3f;
     text-align: center;
     margin: 5% auto;

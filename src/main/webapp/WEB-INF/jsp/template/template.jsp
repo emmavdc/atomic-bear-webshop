@@ -34,7 +34,8 @@
         <script type="text/javascript" src="<spring:url value='/script/template.js'/>"></script>
 
         <!-- TITLE + ICON -->
-        <title>${title}</title>
+        <%--<title>${title}</title>--%>
+        <title><spring:message code='${title}'/></title>
         <link rel="icon" href='<spring:url value = "/images/logo_icon.ico"/>' />
     </head>
     <body>

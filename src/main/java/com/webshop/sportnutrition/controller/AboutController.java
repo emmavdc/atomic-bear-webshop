@@ -16,7 +16,7 @@ public class AboutController extends MasterController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String about(Model model){
-        model.addAttribute("title", "A propos de nous");
+        model.addAttribute("title", "about");
         return "integrated:about";
     }
 }

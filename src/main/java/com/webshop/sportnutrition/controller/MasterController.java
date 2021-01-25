@@ -1,6 +1,7 @@
 package com.webshop.sportnutrition.controller;
 import com.webshop.sportnutrition.dataAccess.dao.TranslationDataAccess;
 import com.webshop.sportnutrition.model.Language;
+import com.webshop.sportnutrition.model.OrderLine;
 import com.webshop.sportnutrition.model.Translation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
 
 @SessionAttributes({MasterController.FRCATS, MasterController.ENCATS})

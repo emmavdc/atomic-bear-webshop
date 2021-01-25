@@ -8,16 +8,16 @@
                    action="order"
                    modelAttribute="currentOrder">
 
-            <h1>Résumé de la commande</h1>
+            <h1><spring:message code="orderSummary"/></h1>
             <br>
 
-            <p><strong>Commande de :</strong> ${currentUser.firstName} ${currentUser.lastName}</p>
+            <p><strong><spring:message code="orderFrom"/> :</strong> ${currentUser.firstName} ${currentUser.lastName}</p>
 
             <br>
             <div class="container">
                 <div class="row">
                     <div class="col-sm">
-                        <p><strong>Adresse de livraison :</strong></p>
+                        <p><strong><spring:message code="deliveryAdress"/> :</strong></p>
                         <%-- ${pageContext.request.userPrincipal.streetName}, ${pageContext.request.userPrincipal.streetNumber}
                         ${pageContext.request.userPrincipal.locality} ${pageContext.request.userPrincipal.zipCode}
                         ${pageContext.request.userPrincipal.country} --%>
@@ -26,7 +26,7 @@
                         <p>${currentUser.country}</p>
                     </div>
                     <div class="col-sm">
-                        <p><strong>Adresse de facturation :</strong></p>
+                        <p><strong><spring:message code="billingAdress"/> :</strong></p>
                         <p>${currentUser.streetName}, ${currentUser.streetNumber}</p>
                         <p>${currentUser.locality} ${currentUser.zipCode}</p>
                         <p>${currentUser.country}</p>
@@ -54,6 +54,9 @@
                 </c:forEach>
             </table>
 
+            <h3><strong><spring:message code="subTotal"/> : ${totalPriceCart} €</strong></h3>
+            <br>
+
             <p class="text-center"><spring:message code="confirmOrder"/></p>
             <form:button class="btn btn-primary confirmOrder"><spring:message code="confirm"/></form:button>
 
@@ -64,8 +67,8 @@
 <c:if test="${isOrderConfirmed}">
     <div class="container">
         <c:forEach items="${returnCodesSaveOrder}" var="returnCode">
-            <div id="orderConfirmed">
-                <img src='<spring:url value = "/images/orderConfirmed.gif"/>' width="200" height="150"  alt="confirmed"/>
+            <div id="orderStatus" width="${boxSize}px">
+                <img src='<spring:url value = "/images/${orderStatus}.gif"/>' width="200" height="150"  alt="orderStatus"/>
                 <spring:message code="${returnCode}"/>
             </div>
         </c:forEach>

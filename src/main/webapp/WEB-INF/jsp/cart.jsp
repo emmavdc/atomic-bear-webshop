@@ -77,7 +77,7 @@
         </div>
     </sec:authorize>
     <sec:authorize access="!isAuthenticated()">
-        <p class="text-center"><spring:message code="loginToOrder" /></p>
+        <a href="<spring:url value='/goToLogin'/>"><p class="text-center"><spring:message code="loginToOrder" /></p></a>
     </sec:authorize>
 </div>
 

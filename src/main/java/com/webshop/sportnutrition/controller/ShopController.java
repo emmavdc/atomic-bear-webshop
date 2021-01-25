@@ -40,7 +40,7 @@ public class ShopController extends MasterController {
     public String protein(Model model){
         currentURL = "proteins";
 
-        model.addAttribute("title", "Protéines");
+        model.addAttribute("title", "proteins");
 
         ArrayList<Item> items = this.itemDAO.getByCategory(1);
         model.addAttribute("items", items);
@@ -54,7 +54,7 @@ public class ShopController extends MasterController {
     public String muscleDev(Model model){
         currentURL = "muscledev";
 
-        model.addAttribute("title", "Développement musculaire");
+        model.addAttribute("title", "muscleDev");
 
         ArrayList<Item> items = this.itemDAO.getByCategory(2);
         model.addAttribute("items", items);
@@ -67,7 +67,7 @@ public class ShopController extends MasterController {
     @RequestMapping(value="/energy", method = RequestMethod.GET)
     public String energy(Model model){
         currentURL = "energy";
-        model.addAttribute("title", "Energie");
+        model.addAttribute("title", "energy");
 
         ArrayList<Item> items = this.itemDAO.getByCategory(3);
         model.addAttribute("items", items);
@@ -81,7 +81,7 @@ public class ShopController extends MasterController {
     public String fatBurners(Model model){
         currentURL = "fatBurners";
 
-        model.addAttribute("title", "Brûleurs de graisses");
+        model.addAttribute("title", "fatBurners");
 
         ArrayList<Item> items = this.itemDAO.getByCategory(4);
         model.addAttribute("items", items);
@@ -95,7 +95,7 @@ public class ShopController extends MasterController {
     public String vitamins(Model model){
         currentURL = "vitamins";
 
-        model.addAttribute("title", "Vitamines");
+        model.addAttribute("title", "vitamins");
 
         ArrayList<Item> items = this.itemDAO.getByCategory(5);
         model.addAttribute("items", items);
@@ -109,7 +109,7 @@ public class ShopController extends MasterController {
     public String snackAndDrinks(Model model){
         currentURL = "snackAndDrinks";
 
-        model.addAttribute("title", "Snacks et boissons");
+        model.addAttribute("title", "snackAndDrinks");
 
         ArrayList<Item> items = this.itemDAO.getByCategory(6);
         model.addAttribute("items", items);
@@ -123,7 +123,7 @@ public class ShopController extends MasterController {
     public String accessories(Model model){
         currentURL = "accessories";
 
-        model.addAttribute("title", "Accessoires");
+        model.addAttribute("title", "accessories");
 
         ArrayList<Item> items = this.itemDAO.getByCategory(7);
         model.addAttribute("items", items);

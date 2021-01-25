@@ -48,7 +48,7 @@ public class UserInscriptionController extends MasterController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String userReg (Model model) {
-        model.addAttribute("title", "Inscription");
+        model.addAttribute("title", "registration");
         model.addAttribute("registrationForm", customer());
         return "integrated:userInscription";
     }

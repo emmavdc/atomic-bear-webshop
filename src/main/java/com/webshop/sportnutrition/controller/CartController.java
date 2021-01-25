@@ -44,7 +44,7 @@ public class CartController extends MasterController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String cartDisplay(Model model){
-        model.addAttribute("title", "Panier");
+        model.addAttribute("title", "basket");
         model.addAttribute("minusProduct", new OrderLine());
         model.addAttribute("plusProduct", new OrderLine());
         model.addAttribute("removeProduct", new OrderLine());
@@ -53,16 +53,18 @@ public class CartController extends MasterController {
     }
 
     @RequestMapping(value="order", method = RequestMethod.GET)
-    public String ConfirmOrder(Model model){
-        model.addAttribute("title", "Confirmation commande");
+    public String ConfirmOrder(Model model,
+                               @ModelAttribute(value = "cart") HashMap<Integer, OrderLine> cart){
+        model.addAttribute("title", "oderConfirmation");
         model.addAttribute("isOrderConfirmed", false);
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Customer currentUser = (Customer) principal;
         model.addAttribute("currentUser", currentUser);
+        model.addAttribute("totalPriceCart", totalPriceCart(cart));
         return "integrated:order";
     }
 
-    @RequestMapping(value="order", method = RequestMethod.POST)
+    /*@RequestMapping(value="order", method = RequestMethod.POST)
     public String PassOrder(Model model, @ModelAttribute Order order,
                             @ModelAttribute(value = "cart") HashMap<Integer, OrderLine> cart) {
         model.addAttribute("title", "Confirmation commande");
@@ -79,6 +81,45 @@ public class CartController extends MasterController {
         }
         model.addAttribute("isOrderConfirmed", isOrderConfirmed);
         model.addAttribute("returnCodesSaveOrder", returnCodes);
+
+        return "integrated:order";
+    }*/
+
+    @RequestMapping(value="order", method = RequestMethod.POST)
+    public String PassOrder(Model model, @ModelAttribute Order order,
+                            @ModelAttribute(value = "cart") HashMap<Integer, OrderLine> cart) {
+        model.addAttribute("title", "orderConfirmation");
+
+        model.addAttribute("totalPriceCart", totalPriceCart(cart));
+
+        return "integrated:paypal";
+    }
+
+    @RequestMapping(value="/orderFailed", method = RequestMethod.GET)
+    public String orderFailed(Model model) {
+        model.addAttribute("title", "orderCancelled");
+
+        model.addAttribute("isOrderConfirmed", true);
+        model.addAttribute("returnCodesSaveOrder", "rcOrder02");
+        model.addAttribute("orderStatus", "orderCancelled");
+        model.addAttribute("boxSize", "700");
+
+        return "integrated:order";
+    }
+
+    @RequestMapping(value="/orderSuccess", method = RequestMethod.GET)
+    public String orderSuccessful(Model model, @ModelAttribute Order order,
+                            @ModelAttribute(value = "cart") HashMap<Integer, OrderLine> cart) {
+        model.addAttribute("title", "successfulOrder");
+
+        order.setOrderLines(new ArrayList<>(cart.values()));
+        orderService.SaveOrder(order);
+        cart.clear();
+
+        model.addAttribute("isOrderConfirmed", true);
+        model.addAttribute("returnCodesSaveOrder", "rcOrder01");
+        model.addAttribute("orderStatus", "orderConfirmed");
+        model.addAttribute("boxSize", "500");
 
         return "integrated:order";
     }
@@ -127,6 +168,15 @@ public class CartController extends MasterController {
             price -= (price / 100) * currentItem.getDiscount().getDiscount();
 
         currentOrderLine.setPrice(price * currentOrderLine.getQuantity());
+    }
+
+    public Double totalPriceCart(HashMap<Integer, OrderLine> cart) {
+
+        Double price = 0.0;
+        for (OrderLine orderLine : cart.values()) {
+            price += orderLine.getPrice();
+        }
+        return price;
     }
 
     @RequestMapping(value="/removeProduct", method = RequestMethod.POST)

@@ -8,8 +8,8 @@
                <h2 class="text-center text-secondary name-title">Bonjour ${pageContext.request.userPrincipal.principal.firstName} !</h2>
            </sec:authorize>
 
-           <h1>Bienvenue chez Atomic Bear !</h1>
-           <p class="text-center">Une boutique en ligne de vente de nutrition et de compléments alimentaires spécialisée dans la musculation, le tout avec un super design !</p>
+           <h1><spring:message code="welcome"/></h1>
+           <p class="text-center"><spring:message code="welcomeTxt"/></p>
        </article>
    </div>
 

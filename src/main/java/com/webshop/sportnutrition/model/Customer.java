@@ -42,7 +42,7 @@ public class Customer implements UserDetails {
     @Size(min = 3, max = 45)
     private String lastName;
 
-    @Size(min = 10, max = 10)
+    @Size(max = 10)
     private String phoneNumber;
 
     private Integer nbFidelityPoints;

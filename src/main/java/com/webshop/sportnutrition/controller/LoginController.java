@@ -24,7 +24,7 @@ public class LoginController extends MasterController {
         if (error != null) {
             model.addAttribute("badCredential", "badCredential");
         }
-        model.addAttribute("title", "Login");
+        model.addAttribute("title", "login");
         model.addAttribute("user", new Customer());
         return "integrated:login";
     }

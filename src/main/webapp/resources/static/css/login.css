@@ -13,6 +13,6 @@
 }
 
 .regErrors {
-    color: lightgray;
+    color: red;
     font-style: italic;
 }

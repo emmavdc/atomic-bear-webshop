@@ -48,7 +48,7 @@ public class UserInscriptionController extends MasterController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String userReg (Model model) {
-        model.addAttribute("title", "Inscription");
+        model.addAttribute("title", "registration");
         model.addAttribute("registrationForm", customer());
         return "integrated:userInscription";
     }
@@ -77,6 +77,7 @@ public class UserInscriptionController extends MasterController {
             customer.setEnabled(true);
             customer.setAuthorities("ROLE_USER");
             customer.setNbFidelityPoints(0);
+            if(customer.getPhoneNumber().equals("")) customer.setPhoneNumber(null);
 
             customerDAO.save(customer);
             //return "redirect:/myAccount";

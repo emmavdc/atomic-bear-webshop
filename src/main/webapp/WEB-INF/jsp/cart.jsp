@@ -1,7 +1,7 @@
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <%@ include file ="include/importTags.jsp" %>
 
-<div id="cartTable" class="container">
+<div id="cartTable">
     <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -63,27 +63,21 @@
     </table>
 
     <sec:authorize access="isAuthenticated()">
-    <div class="row">
-        <div class="column">
-        <a href="<spring:url value='/cart/order'/>">
-            <c:choose>
-                <c:when test="${empty sessionScope.cart}">
-                    <button disabled class="btn btn-primary placeOrder"><spring:message code="placeOrder"/></button>
-                </c:when>
-                <c:otherwise>
-                    <button class="btn btn-primary placeOrder"><spring:message code="placeOrder"/></button>
-                </c:otherwise>
-            </c:choose>
-        </a>
+        <div class="placeOrder">
+            <a href="<spring:url value='/cart/order'/>">
+                <c:choose>
+                    <c:when test="${empty sessionScope.cart}">
+                        <button disabled class="btn btn-primary"><spring:message code="placeOrder"/></button>
+                    </c:when>
+                    <c:otherwise>
+                        <button class="btn btn-primary"><spring:message code="placeOrder"/></button>
+                    </c:otherwise>
+                </c:choose>
+            </a>
         </div>
-    </div>
     </sec:authorize>
     <sec:authorize access="!isAuthenticated()">
-        <div class="row">
-            <div class="column">
-                <spring:message code="loginToOrder" />
-            </div>
-        </div>
+        <a href="<spring:url value='/goToLogin'/>"><p class="text-center"><spring:message code="loginToOrder" /></p></a>
     </sec:authorize>
 </div>
 
